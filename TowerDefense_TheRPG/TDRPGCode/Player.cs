@@ -55,6 +55,9 @@
       else if (XP > 30 && Level == 2) {
         GainLevel();
       }
+      else if (XP > 50 && Level == 3){
+        GainLevel();
+      }
     }
 
     /// <summary>
@@ -64,7 +67,10 @@
     private void GainLevel() {
       Level++;
       Attack *= 1.5f;
-      ChangeCharacterPic("playerL" + Level);
+      //Village.UpgradeVillage();
+      if (Level <= 3) {
+        ChangeCharacterPic("playerL" + Level);
+      }
       if (Level >= 2) {
         AutoShoot = true;
       }

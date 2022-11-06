@@ -88,6 +88,16 @@
     }
 
     /// <summary>
+    /// Increases the maximum health for the character.  
+    /// This also increases curhealth.
+    /// </summary>
+    /// <param name="health"></param>
+    public void IncreaseHealth(float health) {
+      MaxHealth += health;
+      CurHealth += health;
+    }
+
+    /// <summary>
     /// Updates the visual health bar for the character based on their
     /// current health. The width of the health bar is ((the percentage of curhealth 
     /// divided by maxhealth) multiplied by a constant value). You can change the constant
