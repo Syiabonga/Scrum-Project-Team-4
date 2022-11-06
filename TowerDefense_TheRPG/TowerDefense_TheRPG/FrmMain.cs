@@ -73,7 +73,7 @@ namespace TowerDefense_TheRPG {
     }
 
     // buttons
-    private void btnStart_Click(object sender, EventArgs e) {
+    public void btnStart_Click(object sender, EventArgs e) {
       BackgroundImage = null;
       btnStart.Visible = false;
       btnStart.Enabled = false;
