@@ -65,7 +65,7 @@
     /// </summary>
     /// <param name="chr">The <see cref="Character">character</see> object to check collision with</param>
     /// <returns>True if collided, false otherwise</returns>
-    public bool DidCollide(Character chr) {
+    public bool ArrowCollide(Character chr) {
       return ControlCharacter.Bounds.IntersectsWith(chr.ControlContainer.Bounds);
     }
   }
