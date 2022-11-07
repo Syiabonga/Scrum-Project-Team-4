@@ -1,3 +1,4 @@
+using System;
 using TowerDefense_TheRPG.code;
 using TowerDefense_TheRPG.Properties;
 
@@ -74,32 +75,66 @@ namespace TowerDefense_TheRPG {
 
     // buttons
     private void btnStart_Click(object sender, EventArgs e) {
-      BackgroundImage = null;
-      btnStart.Visible = false;
-      btnStart.Enabled = false;
-      btnStoryLine.Visible = false;
-      btnStart.Enabled = false;
-      lblStoryLine.Visible = false;
-
-      enemies = new List<Enemy>();
-      arrows = new List<Arrow>();
-      player = new Player(Width / 2, Height / 2 + 100);
-      village = new Village(Width / 2 - 80, Height / 2 - 50);
-      village.ControlContainer.SendToBack();
-      tmrSpawnEnemies.Enabled = true;
-      tmrMoveEnemies.Enabled = true;
-      tmrMoveArrows.Enabled = true;
-      tmrTextCrawl.Enabled = false;
-
-      // TODO: setting the background image here causes visual defects as enemies and player move
-      //       around the screen. Consider either fixing these defects or setting BackgroundImage to null
-      BackgroundImage = Resources.ground;
-
-      // important, keep this call to Focus()!
-      // otherwise, for whatever reason, the start button retains focus (even when enabled = false)
-      // and arrow key presses are ignored and won't move player.
-      Focus();
+            GameStart(sender, e);
     }
+
+        /// <summary>
+        /// Initializes game logic
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+    private void GameStart(object sender, EventArgs e)
+        {
+            BackgroundImage = null;
+            btnStart.Visible = false;
+            btnStart.Enabled = false;
+            btnStoryLine.Visible = false;
+            btnStart.Enabled = false;
+            lblStoryLine.Visible = false;
+
+            enemies = new List<Enemy>();
+            arrows = new List<Arrow>();
+            player = new Player(Width / 2, Height / 2 + 100);
+            village = new Village(Width / 2 - 80, Height / 2 - 50);
+            village.ControlContainer.SendToBack();
+            tmrSpawnEnemies.Enabled = true;
+            tmrMoveEnemies.Enabled = true;
+            tmrMoveArrows.Enabled = true;
+            tmrTextCrawl.Enabled = false;
+
+            // TODO: setting the background image here causes visual defects as enemies and player move
+            //       around the screen. Consider either fixing these defects or setting BackgroundImage to null
+            BackgroundImage = Resources.ground;
+
+            // important, keep this call to Focus()!
+            // otherwise, for whatever reason, the start button retains focus (even when enabled = false)
+            // and arrow key presses are ignored and won't move player.
+            Focus();
+        }
+        /// <summary>
+        /// Runs when an Enemy dies, handles all XP logic
+        /// </summary>
+        /// <param name="enemy"></param>
+    private void EnemyKilled (Enemy enemy)
+        {
+            enemy.Hide();
+            int levelBefore = player.Level;
+            player.GainXP(enemy.XPGiven);
+            int levelAfter = player.Level;
+            if (levelBefore == 1 && levelAfter == 2)
+            {
+                tmrSpawnArrows.Enabled = true;
+                tmrMoveArrows.Enabled = true;
+                FireArrows();
+            }
+            else if (levelBefore == 2 && levelAfter == 3)
+            {
+                tmrSpawnArrows.Interval = 2500;
+                tmrSpawnArrows.Enabled = true;
+                FireArrows();
+            }
+        }
+
     private void btnStoryLine_Click(object sender, EventArgs e) {
       if (btnStoryLine.Text.StartsWith("Show")) {
         Storyline();
@@ -185,20 +220,7 @@ namespace TowerDefense_TheRPG {
         if (enemy.DidCollide(player)) {
           enemy.TakeDamageFrom(player);
           if (enemy.CurHealth <= 0) {
-            enemy.Hide();
-            int levelBefore = player.Level;
-            player.GainXP(enemy.XPGiven);
-            int levelAfter = player.Level;
-            if (levelBefore == 1 && levelAfter == 2) {
-              tmrSpawnArrows.Enabled = true;
-              tmrMoveArrows.Enabled = true;
-              FireArrows();
-            }
-            else if (levelBefore == 2 && levelAfter == 3) {
-              tmrSpawnArrows.Interval = 2500;
-              tmrSpawnArrows.Enabled = true;
-              FireArrows();
-            }
+            EnemyKilled(enemy);
           }
           else {
             enemy.KnockBack();
@@ -242,11 +264,10 @@ namespace TowerDefense_TheRPG {
       foreach (Arrow arrow in arrows) {
         arrow.Move();
         foreach (Enemy enemy in enemies) {
-          if (arrow.DidCollide(enemy)) {
+          if (arrow.ArrowCollide(enemy)) {
             enemy.TakeDamage(0.1f);
             if (enemy.CurHealth <= 0) {
-              enemy.Hide();
-              player.GainXP(enemy.XPGiven);
+                EnemyKilled(enemy);
             }
             else {
               enemy.KnockBack();
