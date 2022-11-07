@@ -16,9 +16,7 @@
     /// </summary>
     public void UpgradeVillage()
     {
-      //village.IncreaseHealth(1.0f);
+      IncreaseHealth(1.0f);
     }
   }
-
-
 }

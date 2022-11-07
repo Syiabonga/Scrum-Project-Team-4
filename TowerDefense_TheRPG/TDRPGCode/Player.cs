@@ -67,7 +67,6 @@
     private void GainLevel() {
       Level++;
       Attack *= 1.5f;
-      //Village.UpgradeVillage();
       if (Level <= 3) {
         ChangeCharacterPic("playerL" + Level);
       }
