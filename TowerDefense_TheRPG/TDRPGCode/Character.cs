@@ -219,11 +219,19 @@
     /// <param name="dirY">Y direction to move. This should be either +1, 0, or -1</param>
     /// <param name="rememberLastMove">This is used internally for knockback. Ignore this parameter if calling this function from outside of this class</param>
     public virtual void Move(int dirX, int dirY, bool rememberLastMove = true) {
-      Y += dirY * MoveSpeed;
-      X += dirX * MoveSpeed;
-      ControlContainer.Top = Y;
-      ControlContainer.Left = X;
-      if (rememberLastMove) {
+      
+      
+            if ((ControlContainer.Top >= 10 && dirY < 0) || (ControlContainer.Bottom <= 650 && dirY > 0))
+            {
+                Y += dirY * MoveSpeed;
+            }
+            if ((ControlContainer.Left >= 15 && dirX < 0) || (ControlContainer.Right <= 1155 && dirX > 0))
+            {
+                X += dirX * MoveSpeed;
+            }
+            ControlContainer.Top = Y;
+            ControlContainer.Left = X;
+            if (rememberLastMove) {
         lastMoveDirX = dirX;
         lastMoveDirY = dirY;
       }

@@ -36,7 +36,7 @@
       SetMaxHealth(1.0f);
       Money = 0;
       Attack = 0.15f;
-      MoveSpeed = 15;
+      MoveSpeed = 10;
       Level = 1;
       XP = 0;
       ChangeCharacterPic("playerL" + Level);
