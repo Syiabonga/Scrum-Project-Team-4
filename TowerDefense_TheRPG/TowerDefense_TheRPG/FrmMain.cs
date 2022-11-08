@@ -49,6 +49,12 @@ namespace TowerDefense_TheRPG
                 tmrTextCrawl.Enabled = false;
             }
         }
+        private void tmrGameTime_Tick(object sender, EventArgs e)
+        {
+            counter++;
+            TimeSpan time = TimeSpan.FromSeconds(counter);
+            lblCountTime.Text = time.ToString(@"mm\:ss");
+        }
         private void tmrSpawnEnemies_Tick(object sender, EventArgs e)
         {
             GenEnemyPos(out int x, out int y);
@@ -177,6 +183,12 @@ namespace TowerDefense_TheRPG
 
             //start game timer
             tmrGameTime.Start();
+
+            //make time and kills visible
+            lblCountKills.Visible = true;
+            lblCountTime.Visible = true;
+            lblKills.Visible = true;
+            lblGameTime.Visible = true;
 
             enemies = new List<Enemy>();
             arrows = new List<Arrow>();
@@ -530,12 +542,6 @@ namespace TowerDefense_TheRPG
 
         }
 
-        private void tmrGameTime_Tick(object sender, EventArgs e)
-        {
-            counter++;
-            TimeSpan time = TimeSpan.FromSeconds(counter);
-            lblCountTime.Text = time.ToString(@"mm\:ss");
-        }
 
         private void tmrMovePlayer_Tick(object sender, EventArgs e)
         {
