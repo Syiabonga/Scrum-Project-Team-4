@@ -198,6 +198,7 @@ namespace TowerDefense_TheRPG
             tmrSpawnEnemies.Enabled = true;
             tmrMoveEnemies.Enabled = true;
             tmrMoveArrows.Enabled = true;
+            tmrSpawnPowerUp.Enabled = true;
             if (player.Level == 1) {
                 tmrSpawnArrows.Interval = 2000;
                 tmrSpawnArrows.Enabled = false;
@@ -228,7 +229,6 @@ namespace TowerDefense_TheRPG
             if (level > 1) {
             //    tmrSpawnArrows.Enabled = true;
             //    tmrMoveArrows.Enabled = true;
-                tmrSpawnPowerUp.Enabled = true;
             //    FireArrows();
             }
             //else if (levelBefore == 2 && levelAfter == 3)
@@ -477,8 +477,8 @@ namespace TowerDefense_TheRPG
         }
         public void SpawnPowerUps()
         {
-            int y = rand.Next(0, Height);
-            int x = rand.Next(0, Width);
+            int y = rand.Next(10, Height-10);
+            int x = rand.Next(10, Width-10);
             int PowerUpType = rand.Next(3);
             PowerUp powerup;
             switch (PowerUpType)
@@ -503,9 +503,26 @@ namespace TowerDefense_TheRPG
             {
                 if (powerup.DidCollide(player))
                 {
-                    PowerUpsToRemove.Add(powerup);
+                    {
+                        if (powerup.Name == "healing")
+                        {
+                            player.IncreaseHealth(player.MaxHealth - player.CurHealth);
+                            player.UpdateHealth();
+                        }
+                        else if (powerup.Name == "strength")
+                        {
+                            player.Attack = 1.0f;
+                            player.MaxHealth = 10.0f;
+                        }
+                        else
+                        {
+                            player.MoveSpeed = 20;
+                        }
+                        PowerUpsToRemove.Add(powerup);
+                    }
                 }
             }
+
             foreach (PowerUp power in PowerUpsToRemove)
             {
                 powerups.Remove(power);

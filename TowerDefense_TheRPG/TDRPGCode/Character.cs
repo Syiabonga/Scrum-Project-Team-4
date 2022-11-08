@@ -95,7 +95,6 @@ namespace TowerDefense_TheRPG.code {
     /// </summary>
     /// <param name="health"></param>
     public void IncreaseHealth(float health) {
-      MaxHealth += health;
       CurHealth += health;
     }
 
