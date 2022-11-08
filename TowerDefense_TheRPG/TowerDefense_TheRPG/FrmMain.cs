@@ -1,6 +1,7 @@
 using System;
 using TowerDefense_TheRPG.code;
 using TowerDefense_TheRPG.Properties;
+using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 namespace TowerDefense_TheRPG
 {
@@ -15,6 +16,7 @@ namespace TowerDefense_TheRPG
         private string storyLine;
         private int curStoryLineIndex;
         private Random rand;
+        private int PlayerDirX = 0, PlayerDirY = 0;
         #endregion
 
         #region Methods
@@ -88,9 +90,48 @@ namespace TowerDefense_TheRPG
         // form
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            PlayerMove(e.KeyCode);
+            switch (e.KeyCode)
+            {
+                case Keys.Up:
+                case Keys.W:
+                    PlayerDirY = -1;
+                    break;
+                case Keys.Down:
+                case Keys.S:
+                    PlayerDirY = +1;
+                    break;
+                case Keys.Left:
+                case Keys.A:
+                    PlayerDirX = -1;
+                    break;
+                case Keys.Right:
+                case Keys.D:
+                    PlayerDirX = +1;
+                    break;
+            }
         }
-
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Up:
+                case Keys.W:
+                    PlayerDirY = 0;
+                    break;
+                case Keys.Down:
+                case Keys.S:
+                    PlayerDirY = 0;
+                    break;
+                case Keys.Left:
+                case Keys.A:
+                    PlayerDirX = 0;
+                    break;
+                case Keys.Right:
+                case Keys.D:
+                    PlayerDirX = 0;
+                    break;
+            }
+        }
         // buttons
         private void btnStart_Click(object sender, EventArgs e)
         {
@@ -202,7 +243,7 @@ namespace TowerDefense_TheRPG
         public void GenEnemyPos(out int x, out int y)
         {
             int enterDir = rand.Next(4);
-            const int offscreen = 50;
+            const int offscreen = -5;
             switch (enterDir)
             {
                 case 0: // left
@@ -377,29 +418,21 @@ namespace TowerDefense_TheRPG
                 Controls.Remove(power.ControlPowerUp);
             }
         }
-        private void PlayerMove(Keys keyCode)
+        private void PlayerMove(int DirX, int DirY)
         {
-            switch (keyCode)
+            if(DirX !=0 || DirY != 0)
             {
-                case Keys.Up:
-                case Keys.W:
-                    player.Move(0, -1);
-                    break;
-                case Keys.Down:
-                case Keys.S:
-                    player.Move(0, +1);
-                    break;
-                case Keys.Left:
-                case Keys.A:
-                    player.Move(-1, 0);
-                    break;
-                case Keys.Right:
-                case Keys.D:
-                    player.Move(+1, 0);
-                    break;
+                player.Move(DirX, DirY);
             }
         }
+
         #endregion
+
         #endregion
+
+        private void tmrMovePlayer_Tick(object sender, EventArgs e)
+        {
+            PlayerMove(PlayerDirX, PlayerDirY);
+        }
     }
 }
