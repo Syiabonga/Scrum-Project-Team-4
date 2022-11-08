@@ -34,6 +34,9 @@
             this.tmrSpawnArrows = new System.Windows.Forms.Timer(this.components);
             this.tmrGameTime = new System.Windows.Forms.Timer(this.components);
             this.txtGameTime = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblEnemyKills = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblStoryLine
@@ -104,12 +107,49 @@
             // 
             this.txtGameTime.AutoSize = true;
             this.txtGameTime.BackColor = System.Drawing.Color.Transparent;
-            this.txtGameTime.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.txtGameTime.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.txtGameTime.ForeColor = System.Drawing.Color.Red;
-            this.txtGameTime.Location = new System.Drawing.Point(1074, 12);
+            this.txtGameTime.Location = new System.Drawing.Point(1132, 20);
             this.txtGameTime.Name = "txtGameTime";
-            this.txtGameTime.Size = new System.Drawing.Size(0, 54);
+            this.txtGameTime.Size = new System.Drawing.Size(43, 50);
             this.txtGameTime.TabIndex = 4;
+            this.txtGameTime.Text = "0";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(1039, 93);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(87, 38);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Kills: ";
+            // 
+            // lblEnemyKills
+            // 
+            this.lblEnemyKills.AutoSize = true;
+            this.lblEnemyKills.BackColor = System.Drawing.Color.Transparent;
+            this.lblEnemyKills.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblEnemyKills.ForeColor = System.Drawing.Color.Gold;
+            this.lblEnemyKills.Location = new System.Drawing.Point(1132, 83);
+            this.lblEnemyKills.Name = "lblEnemyKills";
+            this.lblEnemyKills.Size = new System.Drawing.Size(43, 50);
+            this.lblEnemyKills.TabIndex = 6;
+            this.lblEnemyKills.Text = "0";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(1039, 30);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(98, 38);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Time: ";
             // 
             // FrmMain
             // 
@@ -119,6 +159,9 @@
             this.BackgroundImage = global::TowerDefense_TheRPG.Properties.Resources.title;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1313, 968);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblEnemyKills);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtGameTime);
             this.Controls.Add(this.btnStoryLine);
             this.Controls.Add(this.btnStart);
@@ -146,5 +189,8 @@
     private System.Windows.Forms.Timer tmrSpawnArrows;
         private System.Windows.Forms.Timer tmrGameTime;
         private Label txtGameTime;
+        private Label label1;
+        private Label lblEnemyKills;
+        private Label label2;
     }
 }

@@ -4,7 +4,7 @@ using TowerDefense_TheRPG.Properties;
 
 namespace TowerDefense_TheRPG {
   public partial class FrmMain : Form {
-        int val;
+        int val,kills;
     #region Fields
     private Player player;
     private Village village;
@@ -125,6 +125,8 @@ namespace TowerDefense_TheRPG {
         /// <param name="enemy"></param>
     private void EnemyKilled (Enemy enemy)
         {
+            kills += 1;
+            lblEnemyKills.Text = kills.ToString();
             enemy.Hide();
             int levelBefore = player.Level;
             player.GainXP(enemy.XPGiven);
