@@ -141,6 +141,7 @@
             this.lblGameTime.Size = new System.Drawing.Size(105, 45);
             this.lblGameTime.TabIndex = 4;
             this.lblGameTime.Text = "Time:";
+            this.lblGameTime.Visible = false;
             this.lblGameTime.Click += new System.EventHandler(this.label1_Click);
             // 
             // lblKills
@@ -154,6 +155,7 @@
             this.lblKills.Size = new System.Drawing.Size(101, 45);
             this.lblKills.TabIndex = 5;
             this.lblKills.Text = "Kills: ";
+            this.lblKills.Visible = false;
             // 
             // lblCountTime
             // 
@@ -166,6 +168,7 @@
             this.lblCountTime.Size = new System.Drawing.Size(39, 45);
             this.lblCountTime.TabIndex = 6;
             this.lblCountTime.Text = "0";
+            this.lblCountTime.Visible = false;
             // 
             // lblCountKills
             // 
@@ -178,9 +181,11 @@
             this.lblCountKills.Size = new System.Drawing.Size(39, 45);
             this.lblCountKills.TabIndex = 7;
             this.lblCountKills.Text = "0";
+            this.lblCountKills.Visible = false;
             // 
             // tmrGameTime
             // 
+            this.tmrGameTime.Interval = 1000;
             this.tmrGameTime.Tick += new System.EventHandler(this.tmrGameTime_Tick);
             // 
             // FrmMain
