@@ -110,6 +110,12 @@ namespace TowerDefense_TheRPG {
             tmrMoveArrows.Enabled = true;
             tmrTextCrawl.Enabled = false;
 
+            //make game imer and kills visible
+            txtGameTime.Visible = true;
+            lblEnemyKills.Visible = true;
+            lblKills.Visible = true;
+            lblTime.Visible = true;
+
             // TODO: setting the background image here causes visual defects as enemies and player move
             //       around the screen. Consider either fixing these defects or setting BackgroundImage to null
             BackgroundImage = Resources.ground;

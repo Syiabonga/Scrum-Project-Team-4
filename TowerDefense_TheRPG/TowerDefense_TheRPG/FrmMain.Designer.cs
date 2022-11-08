@@ -34,9 +34,9 @@
             this.tmrSpawnArrows = new System.Windows.Forms.Timer(this.components);
             this.tmrGameTime = new System.Windows.Forms.Timer(this.components);
             this.txtGameTime = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblKills = new System.Windows.Forms.Label();
             this.lblEnemyKills = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblTime = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblStoryLine
@@ -114,18 +114,20 @@
             this.txtGameTime.Size = new System.Drawing.Size(43, 50);
             this.txtGameTime.TabIndex = 4;
             this.txtGameTime.Text = "0";
+            this.txtGameTime.Visible = false;
             // 
-            // label1
+            // lblKills
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(1039, 93);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 38);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Kills: ";
+            this.lblKills.AutoSize = true;
+            this.lblKills.BackColor = System.Drawing.Color.Transparent;
+            this.lblKills.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblKills.ForeColor = System.Drawing.Color.White;
+            this.lblKills.Location = new System.Drawing.Point(1039, 93);
+            this.lblKills.Name = "lblKills";
+            this.lblKills.Size = new System.Drawing.Size(87, 38);
+            this.lblKills.TabIndex = 5;
+            this.lblKills.Text = "Kills: ";
+            this.lblKills.Visible = false;
             // 
             // lblEnemyKills
             // 
@@ -138,18 +140,20 @@
             this.lblEnemyKills.Size = new System.Drawing.Size(43, 50);
             this.lblEnemyKills.TabIndex = 6;
             this.lblEnemyKills.Text = "0";
+            this.lblEnemyKills.Visible = false;
             // 
-            // label2
+            // lblTime
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(1039, 30);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(98, 38);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Time: ";
+            this.lblTime.AutoSize = true;
+            this.lblTime.BackColor = System.Drawing.Color.Transparent;
+            this.lblTime.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblTime.ForeColor = System.Drawing.Color.White;
+            this.lblTime.Location = new System.Drawing.Point(1039, 30);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(98, 38);
+            this.lblTime.TabIndex = 7;
+            this.lblTime.Text = "Time: ";
+            this.lblTime.Visible = false;
             // 
             // FrmMain
             // 
@@ -159,9 +163,9 @@
             this.BackgroundImage = global::TowerDefense_TheRPG.Properties.Resources.title;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1313, 968);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblTime);
             this.Controls.Add(this.lblEnemyKills);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblKills);
             this.Controls.Add(this.txtGameTime);
             this.Controls.Add(this.btnStoryLine);
             this.Controls.Add(this.btnStart);
@@ -189,8 +193,8 @@
     private System.Windows.Forms.Timer tmrSpawnArrows;
         private System.Windows.Forms.Timer tmrGameTime;
         private Label txtGameTime;
-        private Label label1;
+        private Label lblKills;
         private Label lblEnemyKills;
-        private Label label2;
+        private Label lblTime;
     }
 }
