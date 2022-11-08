@@ -103,7 +103,7 @@
             // 
             // tmrSpawnPowerUp
             // 
-            this.tmrSpawnPowerUp.Interval = 45000;
+            this.tmrSpawnPowerUp.Interval = 5000;
             this.tmrSpawnPowerUp.Tick += new System.EventHandler(this.tmrSpawnPowerUp_Tick);
             // 
             // tmrMovePlayer
