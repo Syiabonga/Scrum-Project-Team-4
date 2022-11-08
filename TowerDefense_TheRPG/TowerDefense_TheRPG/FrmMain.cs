@@ -17,6 +17,7 @@ namespace TowerDefense_TheRPG
         private int curStoryLineIndex;
         private Random rand;
         private int PlayerDirX = 0, PlayerDirY = 0;
+        private bool FiringArrows = false;
         #endregion
 
         #region Methods
@@ -86,8 +87,22 @@ namespace TowerDefense_TheRPG
         {
             MoveArrows();
         }
+        private void FiredArrow_Tick(object sender, EventArgs e)
+        {
+            tmrFiredArrow.Enabled = false;
+        }
 
         // form
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            {
+                if (e.KeyChar == 'e' && tmrFiredArrow.Enabled == false)
+                {
+                    FireArrows();
+                    tmrFiredArrow.Enabled = true;
+                }
+            }
+        }
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -109,7 +124,7 @@ namespace TowerDefense_TheRPG
                     PlayerDirX = +1;
                     break;
                 case Keys.E:
-                    FireArrows();
+                    FiringArrows = true;
                     break;
             }
         }
@@ -134,7 +149,7 @@ namespace TowerDefense_TheRPG
                     PlayerDirX = 0;
                     break;
                 case Keys:
-                    FireArrows();
+                    FiringArrows = false;
                     break;
             }
         }
@@ -168,7 +183,7 @@ namespace TowerDefense_TheRPG
             tmrMoveArrows.Enabled = true;
             if (player.Level == 1) {
                 tmrSpawnArrows.Interval = 2000;
-                tmrSpawnArrows.Enabled = true;
+                tmrSpawnArrows.Enabled = false;
                 //FireArrows();
             }
             tmrTextCrawl.Enabled = false;
@@ -489,6 +504,14 @@ namespace TowerDefense_TheRPG
         #endregion
 
         #endregion
+
+        private void tmrFiringArrows_Tick(object sender, EventArgs e)
+        {
+            if (FiringArrows || tmrFiredArrow.Enabled == false)
+            {
+                FireArrows();
+            }
+        }
 
         private void tmrMovePlayer_Tick(object sender, EventArgs e)
         {
