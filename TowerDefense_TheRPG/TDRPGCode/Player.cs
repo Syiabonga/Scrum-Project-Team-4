@@ -70,9 +70,9 @@
       if (Level <= 3) {
         ChangeCharacterPic("playerL" + Level);
       }
-      if (Level >= 2) {
-        AutoShoot = true;
-      }
+      //if (Level >= 2) {
+        //AutoShoot = true;
+      //}
     }
   }
 }

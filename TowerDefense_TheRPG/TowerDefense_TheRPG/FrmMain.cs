@@ -108,6 +108,9 @@ namespace TowerDefense_TheRPG
                 case Keys.D:
                     PlayerDirX = +1;
                     break;
+                case Keys.E:
+                    FireArrows();
+                    break;
             }
         }
         private void Form1_KeyUp(object sender, KeyEventArgs e)
@@ -129,6 +132,9 @@ namespace TowerDefense_TheRPG
                 case Keys.Right:
                 case Keys.D:
                     PlayerDirX = 0;
+                    break;
+                case Keys:
+                    FireArrows();
                     break;
             }
         }
@@ -160,6 +166,11 @@ namespace TowerDefense_TheRPG
             tmrSpawnEnemies.Enabled = true;
             tmrMoveEnemies.Enabled = true;
             tmrMoveArrows.Enabled = true;
+            if (player.Level == 1) {
+                tmrSpawnArrows.Interval = 2000;
+                tmrSpawnArrows.Enabled = true;
+                //FireArrows();
+            }
             tmrTextCrawl.Enabled = false;
 
             // TODO: setting the background image here causes visual defects as enemies and player move
@@ -178,22 +189,21 @@ namespace TowerDefense_TheRPG
         private void EnemyKilled(Enemy enemy)
         {
             enemy.Hide();
-            int levelBefore = player.Level;
             player.GainXP(enemy.XPGiven);
-            int levelAfter = player.Level;
-            if (levelBefore == 1 && levelAfter == 2)
-            {
-                tmrSpawnArrows.Enabled = true;
-                tmrMoveArrows.Enabled = true;
+            int level = player.Level;
+            if (level > 1) {
+            //    tmrSpawnArrows.Enabled = true;
+            //    tmrMoveArrows.Enabled = true;
                 tmrSpawnPowerUp.Enabled = true;
-                FireArrows();
+            //    FireArrows();
             }
-            else if (levelBefore == 2 && levelAfter == 3)
-            {
-                tmrSpawnArrows.Interval = 2500;
-                tmrSpawnArrows.Enabled = true;
-                FireArrows();
-            }
+            //else if (levelBefore == 2 && levelAfter == 3)
+            //{
+            //    tmrSpawnArrows.Interval = 2500;
+            //    tmrSpawnArrows.Enabled = true;
+            //    FireArrows();
+            //}
+
         }
 
         private void btnStoryLine_Click(object sender, EventArgs e)
@@ -376,10 +386,42 @@ namespace TowerDefense_TheRPG
         {
             Arrow arrowLeft = new Arrow(player.X, player.Y, -1, 0);
             Arrow arrowRight = new Arrow(player.X, player.Y, +1, 0);
+            Arrow arrowUp = new Arrow(player.X, player.Y, 0, +1);
+            Arrow arrowDown = new Arrow(player.X, player.Y, 0, -1);
+            Arrow arrowTopRight = new Arrow(player.X, player.Y, +1, +1);
+            Arrow arrowBotRight = new Arrow(player.X, player.Y, +1, -1);
+            Arrow arrowTopLeft = new Arrow(player.X, player.Y, -1, +1);
+            Arrow arrowBotLeft = new Arrow(player.X, player.Y, -1, -1);
             arrows.Add(arrowLeft);
             arrows.Add(arrowRight);
+      
             arrowLeft.ControlCharacter.BringToFront();
             arrowRight.ControlCharacter.BringToFront();
+           
+            if (player.Level >= 2) {
+                arrows.Add(arrowUp);
+                arrows.Add(arrowDown);
+
+                arrowLeft.ControlCharacter.BringToFront();
+                arrowRight.ControlCharacter.BringToFront();
+                arrowUp.ControlCharacter.BringToFront();
+                arrowDown.ControlCharacter.BringToFront();
+            }
+            if (player.Level >= 3) {
+                arrows.Add(arrowTopRight);
+                arrows.Add(arrowBotRight);
+                arrows.Add(arrowTopLeft);
+                arrows.Add(arrowBotLeft);
+
+                arrowLeft.ControlCharacter.BringToFront();
+                arrowRight.ControlCharacter.BringToFront();
+                arrowUp.ControlCharacter.BringToFront();
+                arrowDown.ControlCharacter.BringToFront();
+                arrowTopRight.ControlCharacter.BringToFront();
+                arrowBotRight.ControlCharacter.BringToFront();
+                arrowTopLeft.ControlCharacter.BringToFront();
+                arrowBotLeft.ControlCharacter.BringToFront();
+            }
         }
         public void SpawnPowerUps()
         {
