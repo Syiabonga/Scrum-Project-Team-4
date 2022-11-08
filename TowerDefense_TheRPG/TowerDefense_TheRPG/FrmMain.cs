@@ -4,6 +4,7 @@ using TowerDefense_TheRPG.Properties;
 
 namespace TowerDefense_TheRPG {
   public partial class FrmMain : Form {
+        int val;
     #region Fields
     private Player player;
     private Village village;
@@ -37,7 +38,13 @@ namespace TowerDefense_TheRPG {
         tmrTextCrawl.Enabled = false;
       }
     }
-    private void tmrSpawnEnemies_Tick(object sender, EventArgs e) {
+
+        private void tmrGameTime_Tick(object sender, EventArgs e)
+        {
+            int currentTime = val++;
+            txtGameTime.Text = currentTime.ToString();
+        }
+        private void tmrSpawnEnemies_Tick(object sender, EventArgs e) {
       GenEnemyPos(out int x, out int y);
       int enemyType = rand.Next(4);
       Enemy balloon;
@@ -76,6 +83,7 @@ namespace TowerDefense_TheRPG {
     // buttons
     private void btnStart_Click(object sender, EventArgs e) {
             GameStart(sender, e);
+            tmrGameTime.Start();
     }
 
         /// <summary>
@@ -309,7 +317,10 @@ namespace TowerDefense_TheRPG {
           break;
       }
     }
-    #endregion
-    #endregion
-  }
+        #endregion
+
+        #endregion
+
+     
+    }
 }
