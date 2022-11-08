@@ -175,6 +175,9 @@ namespace TowerDefense_TheRPG
             btnStart.Enabled = false;
             lblStoryLine.Visible = false;
 
+            //start game timer
+            tmrGameTime.Start();
+
             enemies = new List<Enemy>();
             arrows = new List<Arrow>();
             player = new Player(Width / 2, Height / 2 + 100);
@@ -525,6 +528,13 @@ namespace TowerDefense_TheRPG
         private void lblStoryLine_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void tmrGameTime_Tick(object sender, EventArgs e)
+        {
+            counter++;
+            TimeSpan time = TimeSpan.FromSeconds(counter);
+            lblCountTime.Text = time.ToString(@"mm\:ss");
         }
 
         private void tmrMovePlayer_Tick(object sender, EventArgs e)

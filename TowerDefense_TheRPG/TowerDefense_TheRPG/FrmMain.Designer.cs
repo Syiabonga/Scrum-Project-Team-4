@@ -41,11 +41,11 @@
             this.tmrMovePlayer = new System.Windows.Forms.Timer(this.components);
             this.tmrFiredArrow = new System.Windows.Forms.Timer(this.components);
             this.tmrFiringArrows = new System.Windows.Forms.Timer(this.components);
-            this.tmrGameTime = new System.Windows.Forms.Timer(this.components);
             this.lblGameTime = new System.Windows.Forms.Label();
             this.lblKills = new System.Windows.Forms.Label();
             this.lblCountTime = new System.Windows.Forms.Label();
             this.lblCountKills = new System.Windows.Forms.Label();
+            this.tmrGameTime = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // lblStoryLine
@@ -138,7 +138,7 @@
             this.lblGameTime.ForeColor = System.Drawing.Color.White;
             this.lblGameTime.Location = new System.Drawing.Point(1123, 39);
             this.lblGameTime.Name = "lblGameTime";
-            this.lblGameTime.Size = new System.Drawing.Size(108, 46);
+            this.lblGameTime.Size = new System.Drawing.Size(105, 45);
             this.lblGameTime.TabIndex = 4;
             this.lblGameTime.Text = "Time:";
             this.lblGameTime.Click += new System.EventHandler(this.label1_Click);
@@ -151,7 +151,7 @@
             this.lblKills.ForeColor = System.Drawing.Color.White;
             this.lblKills.Location = new System.Drawing.Point(1123, 85);
             this.lblKills.Name = "lblKills";
-            this.lblKills.Size = new System.Drawing.Size(105, 46);
+            this.lblKills.Size = new System.Drawing.Size(101, 45);
             this.lblKills.TabIndex = 5;
             this.lblKills.Text = "Kills: ";
             // 
@@ -161,9 +161,9 @@
             this.lblCountTime.BackColor = System.Drawing.Color.Transparent;
             this.lblCountTime.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblCountTime.ForeColor = System.Drawing.Color.Red;
-            this.lblCountTime.Location = new System.Drawing.Point(1234, 39);
+            this.lblCountTime.Location = new System.Drawing.Point(1219, 40);
             this.lblCountTime.Name = "lblCountTime";
-            this.lblCountTime.Size = new System.Drawing.Size(40, 46);
+            this.lblCountTime.Size = new System.Drawing.Size(39, 45);
             this.lblCountTime.TabIndex = 6;
             this.lblCountTime.Text = "0";
             // 
@@ -173,11 +173,15 @@
             this.lblCountKills.BackColor = System.Drawing.Color.Transparent;
             this.lblCountKills.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblCountKills.ForeColor = System.Drawing.Color.Gold;
-            this.lblCountKills.Location = new System.Drawing.Point(1234, 85);
+            this.lblCountKills.Location = new System.Drawing.Point(1219, 84);
             this.lblCountKills.Name = "lblCountKills";
-            this.lblCountKills.Size = new System.Drawing.Size(40, 46);
+            this.lblCountKills.Size = new System.Drawing.Size(39, 45);
             this.lblCountKills.TabIndex = 7;
             this.lblCountKills.Text = "0";
+            // 
+            // tmrGameTime
+            // 
+            this.tmrGameTime.Tick += new System.EventHandler(this.tmrGameTime_Tick);
             // 
             // FrmMain
             // 
@@ -221,10 +225,10 @@
         private System.Windows.Forms.Timer tmrMovePlayer;
         private System.Windows.Forms.Timer tmrFiredArrow;
         private System.Windows.Forms.Timer tmrFiringArrows;
-        private System.Windows.Forms.Timer tmrGameTime;
         private Label lblGameTime;
         private Label lblKills;
         private Label lblCountTime;
         private Label lblCountKills;
+        private System.Windows.Forms.Timer tmrGameTime;
     }
 }
