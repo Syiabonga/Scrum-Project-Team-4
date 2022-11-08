@@ -294,6 +294,24 @@ namespace TowerDefense_TheRPG
                 if (enemy.DidCollide(player))
                 {
                     enemy.TakeDamageFrom(player);
+                    player.TakeDamageFrom(enemy);
+                    if(player.CurHealth <= 0)
+                    {
+                        village.Hide(); // defeated
+                        Form frmGO = new FrmGameOver();
+                        frmGO.Show();
+                        this.Hide();
+                        FormManager.PushToFormStack(frmGO);
+
+                        // disable timers
+                        tmrMoveArrows.Enabled = false;
+                        tmrMoveEnemies.Enabled = false;
+                        tmrSpawnArrows.Enabled = false;
+
+                        tmrSpawnEnemies.Enabled = false;
+                        tmrSpawnPowerUp.Enabled = false;
+                    }
+
                     if (enemy.CurHealth <= 0)
                     {
                         EnemyKilled(enemy);
