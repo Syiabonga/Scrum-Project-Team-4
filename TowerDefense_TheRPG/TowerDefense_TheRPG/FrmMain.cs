@@ -69,7 +69,7 @@ namespace TowerDefense_TheRPG
         }
         private void tmrSpawnEnemies_Tick(object sender, EventArgs e)
         {
-           /* GenEnemyPos(out int x, out int y);
+            GenEnemyPos(out int x, out int y);
             int enemyType = rand.Next(4);
             Enemy balloon;
             switch (enemyType)
@@ -88,7 +88,7 @@ namespace TowerDefense_TheRPG
                     break;
 
             }
-            enemies.Add(balloon);*/
+            enemies.Add(balloon);
         }
 
         private void tmrMoveEnemies_Tick(object sender, EventArgs e)
