@@ -18,6 +18,8 @@ namespace TowerDefense_TheRPG
         private Random rand;
         private int PlayerDirX = 0, PlayerDirY = 0;
         private bool FiringArrows = false;
+        private int kills;
+        private int counter;
         #endregion
 
         #region Methods
@@ -203,6 +205,8 @@ namespace TowerDefense_TheRPG
         /// <param name="enemy"></param>
         private void EnemyKilled(Enemy enemy)
         {
+            kills += 1;
+            lblCountKills.Text = kills.ToString();
             enemy.Hide();
             player.GainXP(enemy.XPGiven);
             int level = player.Level;
@@ -511,6 +515,16 @@ namespace TowerDefense_TheRPG
             {
                 FireArrows();
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblStoryLine_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void tmrMovePlayer_Tick(object sender, EventArgs e)
