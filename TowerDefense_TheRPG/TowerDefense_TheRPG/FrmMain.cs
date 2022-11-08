@@ -290,7 +290,7 @@ namespace TowerDefense_TheRPG
                 {
                     yDir = -1;
                 }
-                enemy.Move(xDir, yDir);
+                enemy.Move(xDir, yDir, true, Width, Height);
                 if (enemy.DidCollide(player))
                 {
                     enemy.TakeDamageFrom(player);
@@ -422,7 +422,7 @@ namespace TowerDefense_TheRPG
         {
             if(DirX !=0 || DirY != 0)
             {
-                player.Move(DirX, DirY);
+                player.Move(DirX, DirY, true, Width, Height);
             }
         }
 
