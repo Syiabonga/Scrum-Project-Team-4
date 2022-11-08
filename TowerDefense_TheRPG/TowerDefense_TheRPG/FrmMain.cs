@@ -71,6 +71,9 @@ namespace TowerDefense_TheRPG
                 case 2:
                     balloon = Enemy.MakeGrayBalloon(x, y);
                     break;
+                case 3:
+                    balloon = Enemy.MakeBossBalloon(x, y);
+                    break;
                 default:
                     balloon = Enemy.MakeOrangeBalloon(x, y);
                     break;
