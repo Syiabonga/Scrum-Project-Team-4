@@ -13,6 +13,11 @@ namespace TowerDefense_TheRPG.code
         public Control ControlPowerUp { get; private set; }
 
         /// <summary>
+        /// Returns the power-up name for activation
+        /// </summary>
+        public string Name { get; private set; }
+
+        /// <summary>
         /// Contructor
         /// </summary>
         /// <param name="name">Name of the power-up. Used to lookup an image in resource.</param>
@@ -22,6 +27,7 @@ namespace TowerDefense_TheRPG.code
         /// <param name="h">Desired height of the picturebox used to represent this power-up</param>
         public PowerUp(string name, int x, int y)
         {
+            Name = name;
             ControlPowerUp = new PictureBox()
             {
                 BackgroundImage = ControlManager.ResMan.GetObject(name) as Bitmap,

@@ -46,6 +46,10 @@
             this.lblCountTime = new System.Windows.Forms.Label();
             this.lblCountKills = new System.Windows.Forms.Label();
             this.tmrGameTime = new System.Windows.Forms.Timer(this.components);
+            this.tmrCheckPowerUpsCollected = new System.Windows.Forms.Timer(this.components);
+            this.tmrPowerUpsDeactivate = new System.Windows.Forms.Timer(this.components);
+            this.lblSpeedActivated = new System.Windows.Forms.Label();
+            this.lblStrengthActivated = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblStoryLine
@@ -79,7 +83,7 @@
             // 
             // tmrSpawnEnemies
             // 
-            this.tmrSpawnEnemies.Interval = 5000;
+            this.tmrSpawnEnemies.Interval = 15000;
             this.tmrSpawnEnemies.Tick += new System.EventHandler(this.tmrSpawnEnemies_Tick);
             // 
             // tmrMoveEnemies
@@ -111,7 +115,7 @@
             // 
             // tmrSpawnPowerUp
             // 
-            this.tmrSpawnPowerUp.Interval = 45000;
+            this.tmrSpawnPowerUp.Interval = 10000;
             this.tmrSpawnPowerUp.Tick += new System.EventHandler(this.tmrSpawnPowerUp_Tick);
             // 
             // tmrMovePlayer
@@ -188,7 +192,40 @@
             this.tmrGameTime.Interval = 1000;
             this.tmrGameTime.Tick += new System.EventHandler(this.tmrGameTime_Tick);
             // 
-
+            // tmrCheckPowerUpsCollected
+            // 
+            this.tmrCheckPowerUpsCollected.Tick += new System.EventHandler(this.tmrCheckPowerUpsCollected_Tick);
+            // 
+            // tmrPowerUpsDeactivate
+            // 
+            this.tmrPowerUpsDeactivate.Interval = 10000;
+            this.tmrPowerUpsDeactivate.Tick += new System.EventHandler(this.tmrPowerUpsDeactivate_Tick);
+            // 
+            // lblSpeedActivated
+            // 
+            this.lblSpeedActivated.AutoSize = true;
+            this.lblSpeedActivated.BackColor = System.Drawing.Color.Transparent;
+            this.lblSpeedActivated.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblSpeedActivated.ForeColor = System.Drawing.Color.Blue;
+            this.lblSpeedActivated.Location = new System.Drawing.Point(524, 12);
+            this.lblSpeedActivated.Name = "lblSpeedActivated";
+            this.lblSpeedActivated.Size = new System.Drawing.Size(278, 45);
+            this.lblSpeedActivated.TabIndex = 10;
+            this.lblSpeedActivated.Text = "2x Speed Active!";
+            this.lblSpeedActivated.Visible = false;
+            // 
+            // lblStrengthActivated
+            // 
+            this.lblStrengthActivated.AutoSize = true;
+            this.lblStrengthActivated.BackColor = System.Drawing.Color.Transparent;
+            this.lblStrengthActivated.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblStrengthActivated.ForeColor = System.Drawing.Color.Blue;
+            this.lblStrengthActivated.Location = new System.Drawing.Point(514, 19);
+            this.lblStrengthActivated.Name = "lblStrengthActivated";
+            this.lblStrengthActivated.Size = new System.Drawing.Size(361, 45);
+            this.lblStrengthActivated.TabIndex = 11;
+            this.lblStrengthActivated.Text = "Extra Strength Active!";
+            this.lblStrengthActivated.Visible = false;
             // 
             // FrmMain
             // 
@@ -198,6 +235,8 @@
             this.BackgroundImage = global::TowerDefense_TheRPG.Properties.Resources.title;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1313, 845);
+            this.Controls.Add(this.lblStrengthActivated);
+            this.Controls.Add(this.lblSpeedActivated);
             this.Controls.Add(this.lblCountKills);
             this.Controls.Add(this.lblCountTime);
             this.Controls.Add(this.lblKills);
@@ -237,5 +276,9 @@
         private Label lblCountTime;
         private Label lblCountKills;
         private System.Windows.Forms.Timer tmrGameTime;
+        private System.Windows.Forms.Timer tmrCheckPowerUpsCollected;
+        private System.Windows.Forms.Timer tmrPowerUpsDeactivate;
+        private Label lblSpeedActivated;
+        private Label lblStrengthActivated;
     }
 }

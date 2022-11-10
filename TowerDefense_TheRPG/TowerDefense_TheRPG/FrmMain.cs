@@ -94,7 +94,6 @@ namespace TowerDefense_TheRPG
         private void tmrMoveEnemies_Tick(object sender, EventArgs e)
         {
             MoveEnemies();
-            CheckPowerUps();
         }
         private void tmrSpawnArrows_Tick(object sender, EventArgs e)
         {
@@ -103,6 +102,25 @@ namespace TowerDefense_TheRPG
         private void tmrSpawnPowerUp_Tick(object sender, EventArgs e)
         {
             SpawnPowerUps();
+        }
+        private void tmrCheckPowerUpsCollected_Tick(object sender, EventArgs e)
+        {
+            CheckPowerUps();
+        }
+        private void tmrPowerUpsDeactivate_Tick(object sender, EventArgs e)
+        {
+            if (player.Attack == 1.0f && player.MaxHealth == 10.0f)
+            {
+                player.Attack = 0.15f;
+                player.MaxHealth = 3.0f;
+            }
+            else if (player.MoveSpeed == 20)
+            {
+                player.MoveSpeed = 10;
+            }
+            tmrPowerUpsDeactivate.Enabled = false;
+            lblSpeedActivated.Visible = false;
+            lblStrengthActivated.Visible = false;
         }
         private void tmrMoveArrows_Tick(object sender, EventArgs e)
         {
@@ -213,6 +231,8 @@ namespace TowerDefense_TheRPG
             tmrSpawnEnemies.Enabled = true;
             tmrMoveEnemies.Enabled = true;
             tmrMoveArrows.Enabled = true;
+            tmrSpawnPowerUp.Enabled = true;
+            tmrCheckPowerUpsCollected.Enabled = true;
             if (player.Level == 1) {
                 tmrSpawnArrows.Interval = 2000;
                 tmrSpawnArrows.Enabled = false;
@@ -243,7 +263,6 @@ namespace TowerDefense_TheRPG
             if (level > 1) {
             //    tmrSpawnArrows.Enabled = true;
             //    tmrMoveArrows.Enabled = true;
-                tmrSpawnPowerUp.Enabled = true;
             //    FireArrows();
             }
             //else if (levelBefore == 2 && levelAfter == 3)
@@ -492,8 +511,8 @@ namespace TowerDefense_TheRPG
         }
         public void SpawnPowerUps()
         {
-            int y = rand.Next(0, Height);
-            int x = rand.Next(0, Width);
+            int y = rand.Next(10, Height-20);
+            int x = rand.Next(10, Width-20);
             int PowerUpType = rand.Next(3);
             PowerUp powerup;
             switch (PowerUpType)
@@ -518,9 +537,30 @@ namespace TowerDefense_TheRPG
             {
                 if (powerup.DidCollide(player))
                 {
-                    PowerUpsToRemove.Add(powerup);
+                    {
+                        if (powerup.Name == "healing")
+                        {
+                            player.IncreaseHealth(player.MaxHealth - player.CurHealth);
+                            player.UpdateHealth();
+                        }
+                        else if (powerup.Name == "strength")
+                        {
+                            player.Attack = 1.0f;
+                            player.MaxHealth = 10.0f;
+                            lblStrengthActivated.Visible = true;
+                            tmrPowerUpsDeactivate.Enabled = true;
+                        }
+                        else
+                        {
+                            player.MoveSpeed = 20;
+                            lblSpeedActivated.Visible = true;
+                            tmrPowerUpsDeactivate.Enabled = true;
+                        }
+                        PowerUpsToRemove.Add(powerup);
+                    }
                 }
             }
+
             foreach (PowerUp power in PowerUpsToRemove)
             {
                 powerups.Remove(power);
@@ -557,7 +597,10 @@ namespace TowerDefense_TheRPG
 
         }
 
-      
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
 
         private void tmrMovePlayer_Tick(object sender, EventArgs e)
         {
