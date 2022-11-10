@@ -78,5 +78,21 @@
       balloon.XPGiven = 5;
       return balloon;
     }
-  }
+
+        /// <summary>
+        /// Create a boss balloon <see cref="Enemy"/> at the specified location
+        /// </summary>
+        /// <param name="x">Initial X location for the enemy</param>
+        /// <param name="y">Initial Y location for the enemy</param>
+        /// <returns>The boss balloon <see cref="Enemy"/> object</returns>
+        public static Enemy MakeBossBalloon(int x, int y)
+        {
+            Enemy balloon = new Enemy("bossballoon", x, y, 200, 200);
+            balloon.MoveSpeed = 4;
+            balloon.SetMaxHealth(0.8f);
+            balloon.Attack = 0.4f;
+            balloon.XPGiven = 10;
+            return balloon;
+        }
+    }
 }

@@ -2,6 +2,7 @@ using System;
 using TowerDefense_TheRPG.code;
 using TowerDefense_TheRPG.Properties;
 using static System.Runtime.CompilerServices.RuntimeHelpers;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
 namespace TowerDefense_TheRPG
 {
@@ -18,8 +19,9 @@ namespace TowerDefense_TheRPG
         private Random rand;
         private int PlayerDirX = 0, PlayerDirY = 0;
         private bool FiringArrows = false;
-        private int kills;
-        private int counter;
+        public static int kills;
+        public static int counter;
+        private int timerBossBallon;
         #endregion
 
         #region Methods
@@ -51,9 +53,19 @@ namespace TowerDefense_TheRPG
         }
         private void tmrGameTime_Tick(object sender, EventArgs e)
         {
+
             counter++;
+            //format timer
             TimeSpan time = TimeSpan.FromSeconds(counter);
             lblCountTime.Text = time.ToString(@"mm\:ss");
+            //generate boss balloon every 60 minute
+            GenEnemyPos(out int x, out int y);
+            Enemy bossBalloon;
+            if (counter % 60 == 0)
+            {
+                bossBalloon = Enemy.MakeBossBalloon(x, y);
+                enemies.Add(bossBalloon);
+            }
         }
         private void tmrSpawnEnemies_Tick(object sender, EventArgs e)
         {
@@ -78,6 +90,7 @@ namespace TowerDefense_TheRPG
             }
             enemies.Add(balloon);
         }
+
         private void tmrMoveEnemies_Tick(object sender, EventArgs e)
         {
             MoveEnemies();
@@ -198,6 +211,8 @@ namespace TowerDefense_TheRPG
             btnStoryLine.Visible = false;
             btnStart.Enabled = false;
             lblStoryLine.Visible = false;
+
+
 
             //start game timer
             tmrGameTime.Start();
