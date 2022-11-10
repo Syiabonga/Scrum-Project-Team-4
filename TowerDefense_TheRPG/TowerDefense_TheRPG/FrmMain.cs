@@ -217,11 +217,14 @@ namespace TowerDefense_TheRPG
             //start game timer
             tmrGameTime.Start();
 
-            //make time and kills visible
+            //make kills, money, and timer visible
             lblCountKills.Visible = true;
             lblCountTime.Visible = true;
+            lblCountMoney.Visible = true;
             lblKills.Visible = true;
             lblGameTime.Visible = true;
+            lblMoney.Visible = true;
+            
 
             enemies = new List<Enemy>();
             arrows = new List<Arrow>();
@@ -250,28 +253,24 @@ namespace TowerDefense_TheRPG
             Focus();
         }
         /// <summary>
-        /// Runs when an Enemy dies, handles all XP logic
+        /// Runs when an Enemy dies, handles all XP, kill counter, and money logic.
         /// </summary>
         /// <param name="enemy"></param>
         private void EnemyKilled(Enemy enemy)
         {
+            enemy.Hide();
+            
+            // increase kill counter
             kills += 1;
             lblCountKills.Text = kills.ToString();
-            enemy.Hide();
-            player.GainXP(enemy.XPGiven);
-            int level = player.Level;
-            if (level > 1) {
-            //    tmrSpawnArrows.Enabled = true;
-            //    tmrMoveArrows.Enabled = true;
-            //    FireArrows();
-            }
-            //else if (levelBefore == 2 && levelAfter == 3)
-            //{
-            //    tmrSpawnArrows.Interval = 2500;
-            //    tmrSpawnArrows.Enabled = true;
-            //    FireArrows();
-            //}
 
+            // increase money counter by amount balloon drops
+            player.GainMoney(enemy.MoneyGiven);
+            lblCountMoney.Text = player.Money.ToString();
+
+            // increase XP by amount balloon drops
+            player.GainXP(enemy.XPGiven);
+ 
         }
 
         private void btnStoryLine_Click(object sender, EventArgs e)
@@ -597,8 +596,7 @@ namespace TowerDefense_TheRPG
 
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
+        private void label1_Click_2(object sender, EventArgs e) {
 
         }
 

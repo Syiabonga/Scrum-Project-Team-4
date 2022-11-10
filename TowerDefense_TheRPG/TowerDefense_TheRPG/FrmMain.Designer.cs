@@ -50,6 +50,8 @@
             this.tmrPowerUpsDeactivate = new System.Windows.Forms.Timer(this.components);
             this.lblSpeedActivated = new System.Windows.Forms.Label();
             this.lblStrengthActivated = new System.Windows.Forms.Label();
+            this.lblMoney = new System.Windows.Forms.Label();
+            this.lblCountMoney = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblStoryLine
@@ -57,9 +59,9 @@
             this.lblStoryLine.BackColor = System.Drawing.Color.Transparent;
             this.lblStoryLine.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblStoryLine.ForeColor = System.Drawing.Color.White;
-            this.lblStoryLine.Location = new System.Drawing.Point(14, 12);
+            this.lblStoryLine.Location = new System.Drawing.Point(12, 9);
             this.lblStoryLine.Name = "lblStoryLine";
-            this.lblStoryLine.Size = new System.Drawing.Size(1286, 825);
+            this.lblStoryLine.Size = new System.Drawing.Size(1125, 619);
             this.lblStoryLine.TabIndex = 0;
             this.lblStoryLine.Click += new System.EventHandler(this.lblStoryLine_Click);
             // 
@@ -67,10 +69,9 @@
             // 
             this.btnStart.AutoSize = true;
             this.btnStart.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnStart.Location = new System.Drawing.Point(363, 736);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnStart.Location = new System.Drawing.Point(318, 552);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(251, 93);
+            this.btnStart.Size = new System.Drawing.Size(220, 70);
             this.btnStart.TabIndex = 1;
             this.btnStart.Text = "Play";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -94,10 +95,9 @@
             // 
             this.btnStoryLine.AutoSize = true;
             this.btnStoryLine.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnStoryLine.Location = new System.Drawing.Point(723, 736);
-            this.btnStoryLine.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnStoryLine.Location = new System.Drawing.Point(633, 552);
             this.btnStoryLine.Name = "btnStoryLine";
-            this.btnStoryLine.Size = new System.Drawing.Size(251, 93);
+            this.btnStoryLine.Size = new System.Drawing.Size(220, 70);
             this.btnStoryLine.TabIndex = 3;
             this.btnStoryLine.Text = "Show Storyline";
             this.btnStoryLine.UseVisualStyleBackColor = true;
@@ -140,9 +140,9 @@
             this.lblGameTime.BackColor = System.Drawing.Color.Transparent;
             this.lblGameTime.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblGameTime.ForeColor = System.Drawing.Color.White;
-            this.lblGameTime.Location = new System.Drawing.Point(1123, 39);
+            this.lblGameTime.Location = new System.Drawing.Point(973, 30);
             this.lblGameTime.Name = "lblGameTime";
-            this.lblGameTime.Size = new System.Drawing.Size(105, 45);
+            this.lblGameTime.Size = new System.Drawing.Size(88, 37);
             this.lblGameTime.TabIndex = 4;
             this.lblGameTime.Text = "Time:";
             this.lblGameTime.Visible = false;
@@ -154,9 +154,9 @@
             this.lblKills.BackColor = System.Drawing.Color.Transparent;
             this.lblKills.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblKills.ForeColor = System.Drawing.Color.White;
-            this.lblKills.Location = new System.Drawing.Point(1123, 85);
+            this.lblKills.Location = new System.Drawing.Point(983, 63);
             this.lblKills.Name = "lblKills";
-            this.lblKills.Size = new System.Drawing.Size(101, 45);
+            this.lblKills.Size = new System.Drawing.Size(85, 37);
             this.lblKills.TabIndex = 5;
             this.lblKills.Text = "Kills: ";
             this.lblKills.Visible = false;
@@ -167,9 +167,9 @@
             this.lblCountTime.BackColor = System.Drawing.Color.Transparent;
             this.lblCountTime.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblCountTime.ForeColor = System.Drawing.Color.Red;
-            this.lblCountTime.Location = new System.Drawing.Point(1219, 40);
+            this.lblCountTime.Location = new System.Drawing.Point(1067, 30);
             this.lblCountTime.Name = "lblCountTime";
-            this.lblCountTime.Size = new System.Drawing.Size(39, 45);
+            this.lblCountTime.Size = new System.Drawing.Size(33, 37);
             this.lblCountTime.TabIndex = 6;
             this.lblCountTime.Text = "0";
             this.lblCountTime.Visible = false;
@@ -180,9 +180,9 @@
             this.lblCountKills.BackColor = System.Drawing.Color.Transparent;
             this.lblCountKills.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblCountKills.ForeColor = System.Drawing.Color.Gold;
-            this.lblCountKills.Location = new System.Drawing.Point(1219, 84);
+            this.lblCountKills.Location = new System.Drawing.Point(1067, 63);
             this.lblCountKills.Name = "lblCountKills";
-            this.lblCountKills.Size = new System.Drawing.Size(39, 45);
+            this.lblCountKills.Size = new System.Drawing.Size(33, 37);
             this.lblCountKills.TabIndex = 7;
             this.lblCountKills.Text = "0";
             this.lblCountKills.Visible = false;
@@ -207,9 +207,9 @@
             this.lblSpeedActivated.BackColor = System.Drawing.Color.Transparent;
             this.lblSpeedActivated.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblSpeedActivated.ForeColor = System.Drawing.Color.Blue;
-            this.lblSpeedActivated.Location = new System.Drawing.Point(524, 12);
+            this.lblSpeedActivated.Location = new System.Drawing.Point(458, 9);
             this.lblSpeedActivated.Name = "lblSpeedActivated";
-            this.lblSpeedActivated.Size = new System.Drawing.Size(278, 45);
+            this.lblSpeedActivated.Size = new System.Drawing.Size(231, 37);
             this.lblSpeedActivated.TabIndex = 10;
             this.lblSpeedActivated.Text = "2x Speed Active!";
             this.lblSpeedActivated.Visible = false;
@@ -220,21 +220,50 @@
             this.lblStrengthActivated.BackColor = System.Drawing.Color.Transparent;
             this.lblStrengthActivated.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblStrengthActivated.ForeColor = System.Drawing.Color.Blue;
-            this.lblStrengthActivated.Location = new System.Drawing.Point(514, 19);
+            this.lblStrengthActivated.Location = new System.Drawing.Point(450, 14);
             this.lblStrengthActivated.Name = "lblStrengthActivated";
-            this.lblStrengthActivated.Size = new System.Drawing.Size(361, 45);
+            this.lblStrengthActivated.Size = new System.Drawing.Size(298, 37);
             this.lblStrengthActivated.TabIndex = 11;
             this.lblStrengthActivated.Text = "Extra Strength Active!";
             this.lblStrengthActivated.Visible = false;
             // 
+            // lblMoney
+            // 
+            this.lblMoney.AutoSize = true;
+            this.lblMoney.BackColor = System.Drawing.Color.Transparent;
+            this.lblMoney.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblMoney.ForeColor = System.Drawing.Color.White;
+            this.lblMoney.Location = new System.Drawing.Point(1021, 100);
+            this.lblMoney.Name = "lblMoney";
+            this.lblMoney.Size = new System.Drawing.Size(40, 37);
+            this.lblMoney.TabIndex = 12;
+            this.lblMoney.Text = "$:";
+            this.lblMoney.Visible = false;
+            this.lblMoney.Click += new System.EventHandler(this.label1_Click_2);
+            // 
+            // lblCountMoney
+            // 
+            this.lblCountMoney.AutoSize = true;
+            this.lblCountMoney.BackColor = System.Drawing.Color.Transparent;
+            this.lblCountMoney.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblCountMoney.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblCountMoney.Location = new System.Drawing.Point(1067, 100);
+            this.lblCountMoney.Name = "lblCountMoney";
+            this.lblCountMoney.Size = new System.Drawing.Size(33, 37);
+            this.lblCountMoney.TabIndex = 13;
+            this.lblCountMoney.Text = "0";
+            this.lblCountMoney.Visible = false;
+            // 
             // FrmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImage = global::TowerDefense_TheRPG.Properties.Resources.title;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1313, 845);
+            this.ClientSize = new System.Drawing.Size(1149, 634);
+            this.Controls.Add(this.lblCountMoney);
+            this.Controls.Add(this.lblMoney);
             this.Controls.Add(this.lblStrengthActivated);
             this.Controls.Add(this.lblSpeedActivated);
             this.Controls.Add(this.lblCountKills);
@@ -245,7 +274,6 @@
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.lblStoryLine);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tower Defense The RPG";
@@ -280,5 +308,7 @@
         private System.Windows.Forms.Timer tmrPowerUpsDeactivate;
         private Label lblSpeedActivated;
         private Label lblStrengthActivated;
+        private Label lblMoney;
+        private Label lblCountMoney;
     }
 }
