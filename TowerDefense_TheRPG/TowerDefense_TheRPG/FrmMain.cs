@@ -61,7 +61,7 @@ namespace TowerDefense_TheRPG
             //generate boss balloon every 60 minute
             GenEnemyPos(out int x, out int y);
             Enemy bossBalloon;
-            if (counter % 6 == 0)
+            if (counter % 60 == 0)
             {
                 bossBalloon = Enemy.MakeBossBalloon(x, y);
                 enemies.Add(bossBalloon);
