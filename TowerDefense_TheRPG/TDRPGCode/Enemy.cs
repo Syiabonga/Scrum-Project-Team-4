@@ -87,10 +87,10 @@
         /// <returns>The boss balloon <see cref="Enemy"/> object</returns>
         public static Enemy MakeBossBalloon(int x, int y)
         {
-            Enemy balloon = new Enemy("bossballon", x, y, 100, 100);
-            balloon.MoveSpeed = 8;
-            balloon.SetMaxHealth(0.5f);
-            balloon.Attack = 0.3f;
+            Enemy balloon = new Enemy("bossballoon", x, y, 200, 200);
+            balloon.MoveSpeed = 4;
+            balloon.SetMaxHealth(0.8f);
+            balloon.Attack = 0.4f;
             balloon.XPGiven = 10;
             return balloon;
         }

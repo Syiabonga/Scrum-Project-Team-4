@@ -19,8 +19,8 @@ namespace TowerDefense_TheRPG
         private Random rand;
         private int PlayerDirX = 0, PlayerDirY = 0;
         private bool FiringArrows = false;
-        private int kills;
-        private int counter;
+        public static int kills;
+        public static int counter;
         private int timerBossBallon;
         #endregion
 
@@ -61,7 +61,7 @@ namespace TowerDefense_TheRPG
             //generate boss balloon every 60 minute
             GenEnemyPos(out int x, out int y);
             Enemy bossBalloon;
-            if (counter % 5 == 0)
+            if (counter % 6 == 0)
             {
                 bossBalloon = Enemy.MakeBossBalloon(x, y);
                 enemies.Add(bossBalloon);
