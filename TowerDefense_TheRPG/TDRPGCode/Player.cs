@@ -61,6 +61,13 @@
     }
 
     /// <summary>
+    /// Call this function whenever a player defeats an enemy.
+    /// </summary>
+    public void GainMoney(int moneyGained) {
+      Money += moneyGained;
+    }
+
+    /// <summary>
     /// Internal function that is automatically called when 
     /// player gains a level (called from GainXP method)
     /// </summary>
