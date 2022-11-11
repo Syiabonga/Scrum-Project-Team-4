@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using TowerDefense_TheRPG.code;
 using TowerDefense_TheRPG.Properties;
 using static System.Runtime.CompilerServices.RuntimeHelpers;
@@ -21,7 +22,7 @@ namespace TowerDefense_TheRPG
         private bool FiringArrows = false;
         public static int kills;
         public static int counter;
-        private int timerBossBallon;
+        public static string storeTimePlayed = "";
         #endregion
 
         #region Methods
@@ -58,6 +59,7 @@ namespace TowerDefense_TheRPG
             //format timer
             TimeSpan time = TimeSpan.FromSeconds(counter);
             lblCountTime.Text = time.ToString(@"mm\:ss");
+            storeTimePlayed = time.ToString(@"mm\:ss");
             //generate boss balloon every 60 minute
             GenEnemyPos(out int x, out int y);
             Enemy bossBalloon;
@@ -357,10 +359,11 @@ namespace TowerDefense_TheRPG
                     if(player.CurHealth <= 0)
                     {
                         village.Hide(); // defeated
+                        Form frmStat = new FrmStats();
                         Form frmGO = new FrmGameOver();
-                        frmGO.Show();
+                        frmStat.Show();                        
                         this.Hide();
-                        FormManager.PushToFormStack(frmGO);
+                        FormManager.PushToFormStack(frmStat);
 
                         // disable timers
                         tmrMoveArrows.Enabled = false;
