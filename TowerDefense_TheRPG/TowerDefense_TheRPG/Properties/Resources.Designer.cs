@@ -283,6 +283,16 @@ namespace TowerDefense_TheRPG.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap statsBack {
+            get {
+                object obj = ResourceManager.GetObject("statsBack", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap strength {
             get {
                 object obj = ResourceManager.GetObject("strength", resourceCulture);
