@@ -23,6 +23,8 @@ namespace TowerDefense_TheRPG
         public static int kills;
         public static int counter;
         public static string storeTimePlayed = "";
+        private int LevelBefore;
+        private int LevelAfter;
         #endregion
 
         #region Methods
@@ -271,8 +273,23 @@ namespace TowerDefense_TheRPG
             lblCountMoney.Text = player.Money.ToString();
 
             // increase XP by amount balloon drops
+            LevelBefore = player.Level;
             player.GainXP(enemy.XPGiven);
- 
+            LevelAfter = player.Level;
+
+            if (LevelAfter > LevelBefore)
+            {
+                UpgradeVillage();
+
+                if (tmrSpawnEnemies.Interval >= 10000)
+                {
+                    tmrSpawnEnemies.Interval -= 3000;
+                }
+                else if (tmrSpawnEnemies.Interval >= 3000)
+                {
+                    tmrSpawnEnemies.Interval -= 1000;
+                }
+            }
         }
 
         private void btnStoryLine_Click(object sender, EventArgs e)
@@ -575,6 +592,13 @@ namespace TowerDefense_TheRPG
             {
                 player.Move(DirX, DirY, true, Width, Height);
             }
+        }
+        /// <summary>
+        /// Upgrades the Village's Health, called by EnemyKilled if a player levels up.
+        /// </summary>
+        private void UpgradeVillage()
+        {
+                village.UpgradeHealth(1.0f);
         }
 
         #endregion

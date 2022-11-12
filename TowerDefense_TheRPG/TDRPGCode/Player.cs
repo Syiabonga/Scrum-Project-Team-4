@@ -15,10 +15,15 @@
     /// </summary>
     public int XP { get; private set; }
 
-    /// <summary>
-    /// Current level player has
-    /// </summary>
-    public int Level { get; private set; }
+        /// <summary>
+        /// Current amount of experience required to advance a level.
+        /// </summary>
+        public int LevelXP { get; private set; }
+
+        /// <summary>
+        /// Current level player has
+        /// </summary>
+        public int Level { get; private set; }
 
     /// <summary>
     /// If this is set to true, player will automatically shoot arrows
@@ -47,18 +52,17 @@
     /// </summary>
     /// <param name="xpGained">How much experience the player should gain. 
     ///                        Use <see cref="Enemy.XPGiven"/> for this</param>
-    public void GainXP(int xpGained) {
-      XP += xpGained;
-      if (XP > 10 && Level == 1) {
-        GainLevel();
-      }
-      else if (XP > 30 && Level == 2) {
-        GainLevel();
-      }
-      else if (XP > 50 && Level == 3){
-        GainLevel();
-      }
-    }
+    public void GainXP(int xpGained)
+        {
+            LevelXP = 5 + (Level * (Level * 5));
+
+            XP += xpGained;
+
+            if (XP >= LevelXP)
+            {
+                GainLevel();
+            }
+        }
 
     /// <summary>
     /// Call this function whenever a player defeats an enemy.
@@ -74,12 +78,13 @@
     private void GainLevel() {
       Level++;
       Attack *= 1.5f;
+      UpgradeHealth(0.5f);
       if (Level <= 3) {
         ChangeCharacterPic("playerL" + Level);
       }
-      //if (Level >= 2) {
-        //AutoShoot = true;
-      //}
+      if (Level >= 3) {
+        AutoShoot = true;
+      }
     }
   }
 }

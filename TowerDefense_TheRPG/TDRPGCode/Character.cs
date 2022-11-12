@@ -97,6 +97,16 @@ namespace TowerDefense_TheRPG.code {
     public void IncreaseHealth(float health) {
       CurHealth += health;
     }
+        /// <summary>
+        /// Upgrades max health of character, and increases cur health the same amount.
+        /// </summary>
+        /// <param name="health"></param>
+    public void UpgradeHealth(float health)
+        {
+            MaxHealth += health;
+            CurHealth += health;
+            UpdateHealth();
+        }
 
     /// <summary>
     /// Updates the visual health bar for the character based on their
