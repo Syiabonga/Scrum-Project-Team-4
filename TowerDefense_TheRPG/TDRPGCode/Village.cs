@@ -11,12 +11,5 @@
     public Village(int x, int y) : base("village", x, y, 165, 100) {
       SetMaxHealth(5.0f);
     }
-    /// <summary>
-    /// Upgrades the Village's Health, called by GainLevel.
-    /// </summary>
-    public void UpgradeVillage()
-    {
-      IncreaseHealth(1.0f);
-    }
   }
 }
