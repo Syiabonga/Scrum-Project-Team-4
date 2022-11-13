@@ -65,10 +65,16 @@ namespace TowerDefense_TheRPG
             //generate boss balloon every 60 minute
             GenEnemyPos(out int x, out int y);
             Enemy bossBalloon;
-            if (counter % 60 == 0)
+            if (counter % 30 == 0)
             {
                 bossBalloon = Enemy.MakeBossBalloon(x, y);
                 enemies.Add(bossBalloon);
+            }
+            if (player.CurHealth <= 0){
+                counter= 0;
+                kills = 0;
+                tmrGameTime.Enabled = false;
+                tmrGameTime.Enabled = false;
             }
         }
         private void tmrSpawnEnemies_Tick(object sender, EventArgs e)
@@ -395,7 +401,7 @@ namespace TowerDefense_TheRPG
                     {
                         village.Hide(); // defeated
                         Form frmStat = new FrmStats();
-                        Form frmGO = new FrmGameOver();
+                        counter = 0;
                         frmStat.Show();                        
                         this.Hide();
                         FormManager.PushToFormStack(frmStat);
