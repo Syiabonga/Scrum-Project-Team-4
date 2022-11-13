@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using TowerDefense_TheRPG.code;
 using TowerDefense_TheRPG.Properties;
 using static System.Runtime.CompilerServices.RuntimeHelpers;
@@ -21,7 +22,9 @@ namespace TowerDefense_TheRPG
         private bool FiringArrows = false;
         public static int kills;
         public static int counter;
-        private int timerBossBallon;
+        public static string storeTimePlayed = "";
+        private int LevelBefore;
+        private int LevelAfter;
         #endregion
 
         #region Methods
@@ -58,13 +61,20 @@ namespace TowerDefense_TheRPG
             //format timer
             TimeSpan time = TimeSpan.FromSeconds(counter);
             lblCountTime.Text = time.ToString(@"mm\:ss");
+            storeTimePlayed = time.ToString(@"mm\:ss");
             //generate boss balloon every 60 minute
             GenEnemyPos(out int x, out int y);
             Enemy bossBalloon;
-            if (counter % 60 == 0)
+            if (counter % 30 == 0)
             {
                 bossBalloon = Enemy.MakeBossBalloon(x, y);
                 enemies.Add(bossBalloon);
+            }
+            if (player.CurHealth <= 0){
+                counter= 0;
+                kills = 0;
+                tmrGameTime.Enabled = false;
+                tmrGameTime.Enabled = false;
             }
         }
         private void tmrSpawnEnemies_Tick(object sender, EventArgs e)
@@ -269,8 +279,23 @@ namespace TowerDefense_TheRPG
             lblCountMoney.Text = player.Money.ToString();
 
             // increase XP by amount balloon drops
+            LevelBefore = player.Level;
             player.GainXP(enemy.XPGiven);
- 
+            LevelAfter = player.Level;
+
+            if (LevelAfter > LevelBefore)
+            {
+                UpgradeVillage();
+
+                if (tmrSpawnEnemies.Interval >= 10000)
+                {
+                    tmrSpawnEnemies.Interval -= 3000;
+                }
+                else if (tmrSpawnEnemies.Interval >= 3000)
+                {
+                    tmrSpawnEnemies.Interval -= 1000;
+                }
+            }
         }
 
         private void btnStoryLine_Click(object sender, EventArgs e)
@@ -375,10 +400,11 @@ namespace TowerDefense_TheRPG
                     if(player.CurHealth <= 0)
                     {
                         village.Hide(); // defeated
-                        Form frmGO = new FrmGameOver();
-                        frmGO.Show();
+                        Form frmStat = new FrmStats();
+                        counter = 0;
+                        frmStat.Show();                        
                         this.Hide();
-                        FormManager.PushToFormStack(frmGO);
+                        FormManager.PushToFormStack(frmStat);
 
                         // disable timers
                         tmrMoveArrows.Enabled = false;
@@ -572,6 +598,13 @@ namespace TowerDefense_TheRPG
             {
                 player.Move(DirX, DirY, true, Width, Height);
             }
+        }
+        /// <summary>
+        /// Upgrades the Village's Health, called by EnemyKilled if a player levels up.
+        /// </summary>
+        private void UpgradeVillage()
+        {
+                village.UpgradeHealth(1.0f);
         }
 
         #endregion
