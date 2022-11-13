@@ -18,5 +18,12 @@
     {
       IncreaseHealth(1.0f);
     }
+
+    /// <summary>
+    /// Called by healTown button to fully heal the Village.
+    /// </summary>
+    public void HealVillage() {
+      SetMaxHealth(5.0f);
+    }
   }
 }

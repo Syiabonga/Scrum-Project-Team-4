@@ -212,8 +212,6 @@ namespace TowerDefense_TheRPG
             btnStart.Enabled = false;
             lblStoryLine.Visible = false;
 
-
-
             //start game timer
             tmrGameTime.Start();
 
@@ -224,6 +222,9 @@ namespace TowerDefense_TheRPG
             lblKills.Visible = true;
             lblGameTime.Visible = true;
             lblMoney.Visible = true;
+
+            //makes Shop buttons visible
+            townHeal.Visible = true;
             
 
             enemies = new List<Enemy>();
@@ -239,7 +240,6 @@ namespace TowerDefense_TheRPG
             if (player.Level == 1) {
                 tmrSpawnArrows.Interval = 2000;
                 tmrSpawnArrows.Enabled = false;
-                //FireArrows();
             }
             tmrTextCrawl.Enabled = false;
 
@@ -304,7 +304,7 @@ namespace TowerDefense_TheRPG
         private void Storyline()
         {
             // TODO: probably should be read from a resource text file
-            storyLine = "Ok, you want a story line, here it is. Once upon a time, there was this village. ";
+            storyLine = "Christian has hijacked the storyline! Once upon a time, there was this village. ";
             storyLine += "In this village were towers. These were great times where towers could roam around, ";
             storyLine += "free of their nature predator..... the balloon! One day, dark clouds appeared in the sky. ";
             storyLine += "It looked like M Night Shamaleon was creating another movie. Then, something strange happened! ";
@@ -598,6 +598,17 @@ namespace TowerDefense_TheRPG
 
         private void label1_Click_2(object sender, EventArgs e) {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e) {
+            if (player.Money >= 3) {
+                Activate();
+                village.HealVillage();
+                village.UpdateHealth();
+                player.GainMoney(-3);
+                lblCountMoney.Text = player.Money.ToString();
+            }
+            this.ActiveControl = null;
         }
 
         private void tmrMovePlayer_Tick(object sender, EventArgs e)
