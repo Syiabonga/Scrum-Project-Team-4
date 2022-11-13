@@ -68,6 +68,12 @@ namespace TowerDefense_TheRPG
                 bossBalloon = Enemy.MakeBossBalloon(x, y);
                 enemies.Add(bossBalloon);
             }
+            if (player.CurHealth <= 0){
+                counter= 0;
+                kills = 0;
+                tmrGameTime.Enabled = false;
+                tmrGameTime.Enabled = false;
+            }
         }
         private void tmrSpawnEnemies_Tick(object sender, EventArgs e)
         {
@@ -360,7 +366,7 @@ namespace TowerDefense_TheRPG
                     {
                         village.Hide(); // defeated
                         Form frmStat = new FrmStats();
-                        Form frmGO = new FrmGameOver();
+                        counter = 0;
                         frmStat.Show();                        
                         this.Hide();
                         FormManager.PushToFormStack(frmStat);
