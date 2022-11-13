@@ -235,6 +235,7 @@ namespace TowerDefense_TheRPG
 
             //makes Shop buttons visible
             townHeal.Visible = true;
+            playerHeal.Visible = true;
             
 
             enemies = new List<Enemy>();
@@ -639,6 +640,17 @@ namespace TowerDefense_TheRPG
                 village.HealVillage();
                 village.UpdateHealth();
                 player.GainMoney(-3);
+                lblCountMoney.Text = player.Money.ToString();
+            }
+            this.ActiveControl = null;
+        }
+
+        private void button1_Click_1(object sender, EventArgs e) {
+            if (player.Money >= 2) {
+                Activate();
+                player.IncreaseHealth(player.MaxHealth - player.CurHealth);
+                player.UpdateHealth();
+                player.GainMoney(-2);
                 lblCountMoney.Text = player.Money.ToString();
             }
             this.ActiveControl = null;
