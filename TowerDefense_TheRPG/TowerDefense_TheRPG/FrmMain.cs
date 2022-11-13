@@ -635,23 +635,27 @@ namespace TowerDefense_TheRPG
         }
 
         private void button1_Click(object sender, EventArgs e) {
-            if (player.Money >= 3) {
-                Activate();
-                village.HealVillage();
-                village.UpdateHealth();
-                player.GainMoney(-3);
-                lblCountMoney.Text = player.Money.ToString();
+            if (village.CurHealth != village.MaxHealth) {
+                if (player.Money >= 3) {
+                    Activate();
+                    village.HealVillage();
+                    village.UpdateHealth();
+                    player.GainMoney(-3);
+                    lblCountMoney.Text = player.Money.ToString();
+                }
             }
             this.ActiveControl = null;
         }
 
         private void button1_Click_1(object sender, EventArgs e) {
-            if (player.Money >= 2) {
-                Activate();
-                player.IncreaseHealth(player.MaxHealth - player.CurHealth);
-                player.UpdateHealth();
-                player.GainMoney(-2);
-                lblCountMoney.Text = player.Money.ToString();
+            if (player.CurHealth != player.MaxHealth) {
+                if (player.Money >= 2) {
+                    Activate();
+                    player.IncreaseHealth(player.MaxHealth - player.CurHealth);
+                    player.UpdateHealth();
+                    player.GainMoney(-2);
+                    lblCountMoney.Text = player.Money.ToString();
+                }   
             }
             this.ActiveControl = null;
         }
