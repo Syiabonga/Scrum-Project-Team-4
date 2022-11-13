@@ -53,6 +53,7 @@
             this.lblMoney = new System.Windows.Forms.Label();
             this.lblCountMoney = new System.Windows.Forms.Label();
             this.townHeal = new System.Windows.Forms.Button();
+            this.playerHeal = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblStoryLine
@@ -267,6 +268,18 @@
             this.townHeal.Visible = false;
             this.townHeal.Click += new System.EventHandler(this.button1_Click);
             // 
+            // playerHeal
+            // 
+            this.playerHeal.Image = global::TowerDefense_TheRPG.Properties.Resources.heal_player_image;
+            this.playerHeal.Location = new System.Drawing.Point(98, 227);
+            this.playerHeal.Name = "playerHeal";
+            this.playerHeal.Size = new System.Drawing.Size(69, 69);
+            this.playerHeal.TabIndex = 15;
+            this.playerHeal.TabStop = false;
+            this.playerHeal.UseVisualStyleBackColor = true;
+            this.playerHeal.Visible = false;
+            this.playerHeal.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -275,6 +288,7 @@
             this.BackgroundImage = global::TowerDefense_TheRPG.Properties.Resources.title;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1149, 634);
+            this.Controls.Add(this.playerHeal);
             this.Controls.Add(this.townHeal);
             this.Controls.Add(this.lblCountMoney);
             this.Controls.Add(this.lblMoney);
@@ -325,5 +339,6 @@
         private Label lblMoney;
         private Label lblCountMoney;
         private Button townHeal;
+        private Button playerHeal;
     }
 }
