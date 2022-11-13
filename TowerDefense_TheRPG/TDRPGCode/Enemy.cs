@@ -68,7 +68,7 @@
       balloon.SetMaxHealth(1.0f);
       balloon.Attack = 1f;
       balloon.XPGiven = 7;
-      balloon.MoneyGiven = 5;
+      balloon.MoneyGiven = 4;
       return balloon;
     }
 
@@ -101,6 +101,7 @@
             balloon.SetMaxHealth(0.8f);
             balloon.Attack = 0.4f;
             balloon.XPGiven = 10;
+            balloon.MoneyGiven = 5;
             return balloon;
         }
     }
