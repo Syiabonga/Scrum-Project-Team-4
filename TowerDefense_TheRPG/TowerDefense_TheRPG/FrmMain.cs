@@ -15,6 +15,7 @@ namespace TowerDefense_TheRPG
         private List<Enemy> enemies;
         private List<Arrow> arrows;
         private List<PowerUp> powerups = new List<PowerUp>();
+        private Boolean ActivePowerUp = false;
         private string storyLine;
         private int curStoryLineIndex;
         private Random rand;
@@ -124,6 +125,7 @@ namespace TowerDefense_TheRPG
             {
                 player.Attack = 0.15f;
                 player.MaxHealth = 3.0f;
+                player.CurHealth = (player.CurHealth / 10.0f) * player.MaxHealth;
             }
             else if (player.MoveSpeed == 20)
             {
@@ -132,6 +134,8 @@ namespace TowerDefense_TheRPG
             tmrPowerUpsDeactivate.Enabled = false;
             lblSpeedActivated.Visible = false;
             lblStrengthActivated.Visible = false;
+            ActivePowerUp = false;
+            tmrSpawnPowerUp.Enabled = true;
         }
         private void tmrMoveArrows_Tick(object sender, EventArgs e)
         {
@@ -208,6 +212,27 @@ namespace TowerDefense_TheRPG
         {
             GameStart(sender, e);
         }
+        private void btnTutorial_Click(object sender, EventArgs e)
+        {
+            if (btnTutorial.Text == "Tutorial")
+            {
+                BackgroundImage = Resources.tutorial;
+                btnStoryLine.Visible = false;
+                btnTutorial.Text = "Exit Tutorial";
+                btnStart.Location = new Point(53, 736);
+
+                tmrSpawnEnemies.Enabled = false;
+                tmrMoveEnemies.Enabled = false;
+                tmrMoveArrows.Enabled = false;
+            }
+            else
+            {
+                BackgroundImage = Resources.title;
+                btnStart.Location = new Point(538, 736);
+                btnStoryLine.Visible = true;
+                btnTutorial.Text = "Tutorial";
+            }
+        }
 
         /// <summary>
         /// Initializes game logic
@@ -218,9 +243,10 @@ namespace TowerDefense_TheRPG
         {
             BackgroundImage = null;
             btnStart.Visible = false;
+            btnTutorial.Visible = false;
             btnStart.Enabled = false;
+            btnTutorial.Enabled = false;
             btnStoryLine.Visible = false;
-            btnStart.Enabled = false;
             lblStoryLine.Visible = false;
 
             //start game timer
@@ -325,6 +351,7 @@ namespace TowerDefense_TheRPG
                 Storyline();
                 BackgroundImage = null;
                 btnStart.Visible = false;
+                btnTutorial.Visible = false;
                 btnStoryLine.Text = "Hide Storyline";
                 lblStoryLine.Visible = true;
 
@@ -337,6 +364,7 @@ namespace TowerDefense_TheRPG
             {
                 BackgroundImage = Resources.title;
                 btnStart.Visible = true;
+                btnTutorial.Visible = true;
                 btnStoryLine.Text = "Show Storyline";
                 lblStoryLine.Visible = false;
 
@@ -417,6 +445,7 @@ namespace TowerDefense_TheRPG
                 {
                     enemy.TakeDamageFrom(player);
                     player.TakeDamageFrom(enemy);
+                    player.UpdateHealth();
                     if(player.CurHealth <= 0)
                     {
                         village.Hide(); // defeated
@@ -559,24 +588,27 @@ namespace TowerDefense_TheRPG
         }
         public void SpawnPowerUps()
         {
-            int y = rand.Next(10, Height-20);
-            int x = rand.Next(10, Width-20);
-            int PowerUpType = rand.Next(3);
-            PowerUp powerup;
-            switch (PowerUpType)
-            {
-                case 0:
-                    powerup = new PowerUp("healing", x, y);
-                    break;
-                case 1:
-                    powerup = new PowerUp("speed", x, y);
-                    break;
-                default:
-                    powerup = new PowerUp("strength", x, y);
-                    break;
+            if(powerups.Count() == 0 && ActivePowerUp == false) {
+                int y = rand.Next(10, 800);
+                int x = rand.Next(10, 1256);
+                int PowerUpType = rand.Next(3);
+                PowerUp powerup;
+                switch (PowerUpType)
+                {
+                    case 0:
+                        powerup = new PowerUp("healing", x, y);
+                        break;
+                    case 1:
+                        powerup = new PowerUp("speed", x, y);
+                        break;
+                    default:
+                        powerup = new PowerUp("strength", x, y);
+                        break;
+                }
+                powerups.Add(powerup);
+                powerup.ControlPowerUp.BringToFront();
+                tmrPowerUpDecay.Enabled = true;
             }
-            powerups.Add(powerup);
-            powerup.ControlPowerUp.BringToFront();
         }
         public void CheckPowerUps()
         {
@@ -595,14 +627,20 @@ namespace TowerDefense_TheRPG
                         {
                             player.Attack = 1.0f;
                             player.MaxHealth = 10.0f;
+                            player.IncreaseHealth(player.MaxHealth - player.CurHealth);
+                            player.UpdateHealth();
                             lblStrengthActivated.Visible = true;
                             tmrPowerUpsDeactivate.Enabled = true;
+                            ActivePowerUp = true;
+                            tmrSpawnPowerUp.Enabled = false;
                         }
                         else
                         {
                             player.MoveSpeed = 20;
                             lblSpeedActivated.Visible = true;
                             tmrPowerUpsDeactivate.Enabled = true;
+                            ActivePowerUp = true;
+                            tmrSpawnPowerUp.Enabled = false;
                         }
                         PowerUpsToRemove.Add(powerup);
                     }
@@ -627,7 +665,7 @@ namespace TowerDefense_TheRPG
         /// </summary>
         private void UpgradeVillage()
         {
-                village.UpgradeHealth(1.0f);
+                village.UpdateMaxHealth(1.0f);
         }
 
         #endregion
@@ -724,15 +762,18 @@ namespace TowerDefense_TheRPG
         }
 
         private void arrowIncOmni_Click(object sender, EventArgs e) {
-            if (player.Money >= 15) {
+            if (player.Money >= 15)
+            {
                 Activate();
                 arrow_directions = "intercardinal";
                 player.GainMoney(-15);
                 lblCountMoney.Text = player.Money.ToString();
                 arrowIncOmniCost.Visible = false;
                 arrowIncOmni.Visible = false;
+                this.ActiveControl = null;
             }
-            this.ActiveControl = null;
+        }
+
         private void label1_Click_1(object sender, EventArgs e)
         {
 
@@ -747,6 +788,19 @@ namespace TowerDefense_TheRPG
         private void label1_Click_3(object sender, EventArgs e)
         {
 
+        }
+
+        private void tmrPowerUpDecay_Tick(object sender, EventArgs e)
+        {
+            if(powerups.Count() == 1)
+            {
+                foreach (PowerUp power in powerups.ToList())
+                {
+                    powerups.Remove(power);
+                    Controls.Remove(power.ControlPowerUp);
+                }
+            }
+            tmrPowerUpDecay.Enabled = false;
         }
 
         private void tmrMovePlayer_Tick(object sender, EventArgs e)
