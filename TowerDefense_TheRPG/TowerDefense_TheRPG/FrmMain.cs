@@ -25,6 +25,7 @@ namespace TowerDefense_TheRPG
         public static string storeTimePlayed = "";
         private int LevelBefore;
         private int LevelAfter;
+        private string arrow_directions = "horizontal";
         #endregion
 
         #region Methods
@@ -62,7 +63,7 @@ namespace TowerDefense_TheRPG
             TimeSpan time = TimeSpan.FromSeconds(counter);
             lblCountTime.Text = time.ToString(@"mm\:ss");
             storeTimePlayed = time.ToString(@"mm\:ss");
-            //generate boss balloon every 30 seconds
+            //generate boss balloon every 60 minute
             GenEnemyPos(out int x, out int y);
             Enemy bossBalloon;
             if (counter % 30 == 0)
@@ -197,7 +198,7 @@ namespace TowerDefense_TheRPG
                 case Keys.D:
                     PlayerDirX = 0;
                     break;
-                case Keys.E:
+                case Keys:
                     FiringArrows = false;
                     break;
             }
@@ -225,19 +226,22 @@ namespace TowerDefense_TheRPG
             //start game timer
             tmrGameTime.Start();
 
-            //make kills, money, level, and timer visible
+            //make kills, money, and timer visible (both labels and values)
             lblCountKills.Visible = true;
             lblCountTime.Visible = true;
             lblCountMoney.Visible = true;
-            lblLevelValue.Visible = true;
             lblKills.Visible = true;
             lblGameTime.Visible = true;
             lblMoney.Visible = true;
-            lblLevel.Visible = true;
 
-            //makes Shop buttons visible
+            //makes Shop buttons visible (both labels and buttons)
+            shopLabel.Visible = true;
             townHeal.Visible = true;
+            villageHealCost.Visible = true;
             playerHeal.Visible = true;
+            playerHealCost.Visible = true;
+            arrowInc.Visible = true;
+            arrowIncCost.Visible = true;
             
 
             enemies = new List<Enemy>();
@@ -288,8 +292,6 @@ namespace TowerDefense_TheRPG
 
             if (LevelAfter > LevelBefore)
             {
-                lblLevelValue.Text = LevelAfter.ToString();
-                
                 UpgradeVillage();
 
                 if (tmrSpawnEnemies.Interval >= 10000)
@@ -301,14 +303,6 @@ namespace TowerDefense_TheRPG
                     tmrSpawnEnemies.Interval -= 1000;
                 }
             }
-
-            if (LevelAfter >= 5 && BackgroundImage != null)
-            {
-                BackgroundImage = null;
-                tmrEndlessTextHide.Enabled = true;
-                EndlessMode.Visible = true;
-            }
-
         }
 
         private void btnStoryLine_Click(object sender, EventArgs e)
@@ -516,14 +510,13 @@ namespace TowerDefense_TheRPG
             Arrow arrowBotRight = new Arrow(player.X, player.Y, +1, -1);
             Arrow arrowTopLeft = new Arrow(player.X, player.Y, -1, +1);
             Arrow arrowBotLeft = new Arrow(player.X, player.Y, -1, -1);
-
             arrows.Add(arrowLeft);
             arrows.Add(arrowRight);
       
             arrowLeft.ControlCharacter.BringToFront();
             arrowRight.ControlCharacter.BringToFront();
            
-            if (player.Level >= 2) {
+            if (arrow_directions == "cardinal") {
                 arrows.Add(arrowUp);
                 arrows.Add(arrowDown);
 
@@ -532,7 +525,9 @@ namespace TowerDefense_TheRPG
                 arrowUp.ControlCharacter.BringToFront();
                 arrowDown.ControlCharacter.BringToFront();
             }
-            if (player.Level >= 3) {
+            if (arrow_directions == "intercardinal") {
+                arrows.Add(arrowUp);
+                arrows.Add(arrowDown);
                 arrows.Add(arrowTopRight);
                 arrows.Add(arrowBotRight);
                 arrows.Add(arrowTopLeft);
@@ -647,6 +642,11 @@ namespace TowerDefense_TheRPG
 
         }
 
+        /// <summary>
+        /// Button uses heal_town_image and is for healing the town when the town is not at max health.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e) {
             if (village.CurHealth != village.MaxHealth) {
                 if (player.Money >= 3) {
@@ -660,6 +660,12 @@ namespace TowerDefense_TheRPG
             this.ActiveControl = null;
         }
 
+        /// <summary>
+        /// Button uses heal_player_image and is for healing the player when the player is not at max health.
+        /// Is a caution as originally the only way the player could heal was from power-ups.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click_1(object sender, EventArgs e) {
             if (player.CurHealth != player.MaxHealth) {
                 if (player.Money >= 2) {
@@ -673,20 +679,46 @@ namespace TowerDefense_TheRPG
             this.ActiveControl = null;
         }
 
-        private void label1_Click_1(object sender, EventArgs e)
-        {
+        private void FrmMain_Load(object sender, EventArgs e) {
 
         }
 
-        private void EndlessTextHideTick(object sender, EventArgs e)
-        {
-            EndlessMode.Visible = false;
-            tmrEndlessTextHide.Enabled = false;
+        private void label3_Click(object sender, EventArgs e) {
+
         }
 
-        private void label1_Click_3(object sender, EventArgs e)
-        {
+        private void label2_Click(object sender, EventArgs e) {
 
+        }
+
+        private void arrowIncCost_Click(object sender, EventArgs e) {
+
+        }
+
+        private void arrowInc_Click(object sender, EventArgs e) {
+            if (player.Money >= 8) {
+                Activate();
+                arrow_directions = "cardinal";
+                player.GainMoney(-8);
+                lblCountMoney.Text = player.Money.ToString();
+                arrowIncOmniCost.Visible = true;
+                arrowIncOmni.Visible = true;
+                arrowIncCost.Visible = false;
+                arrowInc.Visible = false;
+            }
+            this.ActiveControl = null;
+        }
+
+        private void arrowIncOmni_Click(object sender, EventArgs e) {
+            if (player.Money >= 15) {
+                Activate();
+                arrow_directions = "intercardinal";
+                player.GainMoney(-15);
+                lblCountMoney.Text = player.Money.ToString();
+                arrowIncOmniCost.Visible = false;
+                arrowIncOmni.Visible = false;
+            }
+            this.ActiveControl = null;
         }
 
         private void tmrMovePlayer_Tick(object sender, EventArgs e)

@@ -166,6 +166,9 @@
   <data name="heal_town_image" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\data\heal_town_image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="omnidir_arrows" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\data\omnidir_arrows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="orangeballoon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\data\orangeballoon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -198,6 +201,9 @@
   </data>
   <data name="title" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\data\title.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="vertical_arrows" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\data\vertical_arrows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="village" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\data\village.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
