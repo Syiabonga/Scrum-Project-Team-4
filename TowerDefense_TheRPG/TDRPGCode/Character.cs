@@ -78,17 +78,7 @@ namespace TowerDefense_TheRPG.code {
     }
     #endregion
 
-    #region Health and Damage
-    /// <summary>
-    /// Sets the maximum health for the character. This also resets 
-    /// curhealth to be the maximum health.
-    /// </summary>
-    /// <param name="health"></param>
-    public void SetMaxHealth(float health) {
-      MaxHealth = health;
-      CurHealth = MaxHealth;
-    }
-
+    #region Health and Damage 
     /// <summary>
     /// Increases the maximum health for the character.  
     /// This also increases curhealth.
@@ -101,7 +91,7 @@ namespace TowerDefense_TheRPG.code {
         /// Upgrades max health of character, and increases cur health the same amount.
         /// </summary>
         /// <param name="health"></param>
-    public void UpgradeHealth(float health)
+    public void UpdateMaxHealth(float health)
         {
             MaxHealth += health;
             CurHealth += health;

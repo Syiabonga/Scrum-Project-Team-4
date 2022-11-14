@@ -9,7 +9,7 @@
     /// <param name="x">Initial X (aka left) position of village</param>
     /// <param name="y">Initial Y (aka top) position of village</param>
     public Village(int x, int y) : base("village", x, y, 165, 100) {
-      SetMaxHealth(5.0f);
+      UpdateMaxHealth(5.0f);
     }
     /// <summary>
     /// Upgrades the Village's Health, called by GainLevel.
@@ -23,7 +23,7 @@
     /// Called by healTown button to fully heal the Village.
     /// </summary>
     public void HealVillage() {
-      SetMaxHealth(5.0f);
+      IncreaseHealth(MaxHealth-CurHealth);
     }
   }
 }
