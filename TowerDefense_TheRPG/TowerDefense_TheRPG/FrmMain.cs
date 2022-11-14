@@ -62,7 +62,7 @@ namespace TowerDefense_TheRPG
             TimeSpan time = TimeSpan.FromSeconds(counter);
             lblCountTime.Text = time.ToString(@"mm\:ss");
             storeTimePlayed = time.ToString(@"mm\:ss");
-            //generate boss balloon every 60 minute
+            //generate boss balloon every 30 seconds
             GenEnemyPos(out int x, out int y);
             Enemy bossBalloon;
             if (counter % 30 == 0)
@@ -197,7 +197,7 @@ namespace TowerDefense_TheRPG
                 case Keys.D:
                     PlayerDirX = 0;
                     break;
-                case Keys:
+                case Keys.E:
                     FiringArrows = false;
                     break;
             }
@@ -225,13 +225,15 @@ namespace TowerDefense_TheRPG
             //start game timer
             tmrGameTime.Start();
 
-            //make kills, money, and timer visible
+            //make kills, money, level, and timer visible
             lblCountKills.Visible = true;
             lblCountTime.Visible = true;
             lblCountMoney.Visible = true;
+            lblLevelValue.Visible = true;
             lblKills.Visible = true;
             lblGameTime.Visible = true;
             lblMoney.Visible = true;
+            lblLevel.Visible = true;
 
             //makes Shop buttons visible
             townHeal.Visible = true;
@@ -286,6 +288,8 @@ namespace TowerDefense_TheRPG
 
             if (LevelAfter > LevelBefore)
             {
+                lblLevelValue.Text = LevelAfter.ToString();
+                
                 UpgradeVillage();
 
                 if (tmrSpawnEnemies.Interval >= 10000)
@@ -297,6 +301,14 @@ namespace TowerDefense_TheRPG
                     tmrSpawnEnemies.Interval -= 1000;
                 }
             }
+
+            if (LevelAfter >= 5 && BackgroundImage != null)
+            {
+                BackgroundImage = null;
+                tmrEndlessTextHide.Enabled = true;
+                EndlessMode.Visible = true;
+            }
+
         }
 
         private void btnStoryLine_Click(object sender, EventArgs e)
@@ -504,6 +516,7 @@ namespace TowerDefense_TheRPG
             Arrow arrowBotRight = new Arrow(player.X, player.Y, +1, -1);
             Arrow arrowTopLeft = new Arrow(player.X, player.Y, -1, +1);
             Arrow arrowBotLeft = new Arrow(player.X, player.Y, -1, -1);
+
             arrows.Add(arrowLeft);
             arrows.Add(arrowRight);
       
@@ -658,6 +671,22 @@ namespace TowerDefense_TheRPG
                 }   
             }
             this.ActiveControl = null;
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EndlessTextHideTick(object sender, EventArgs e)
+        {
+            EndlessMode.Visible = false;
+            tmrEndlessTextHide.Enabled = false;
+        }
+
+        private void label1_Click_3(object sender, EventArgs e)
+        {
+
         }
 
         private void tmrMovePlayer_Tick(object sender, EventArgs e)
