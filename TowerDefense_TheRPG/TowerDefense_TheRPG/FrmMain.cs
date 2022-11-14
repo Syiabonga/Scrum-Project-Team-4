@@ -146,7 +146,7 @@ namespace TowerDefense_TheRPG
             tmrFiredArrow.Enabled = false;
         }
 
-        // form
+        // Originally created by Christian Evans. Altered by Eban Goodman-Blue.
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
             {
@@ -376,16 +376,14 @@ namespace TowerDefense_TheRPG
         #region Helper functions
         private void Storyline()
         {
-            // TODO: probably should be read from a resource text file
-            storyLine = "Christian has hijacked the storyline! Once upon a time, there was this village. ";
-            storyLine += "In this village were towers. These were great times where towers could roam around, ";
-            storyLine += "free of their nature predator..... the balloon! One day, dark clouds appeared in the sky. ";
-            storyLine += "It looked like M Night Shamaleon was creating another movie. Then, something strange happened! ";
-            storyLine += "Evil balloons started entering the village. 1 balloon, then 2 balloons, then several more. The towers became afraid. ";
-            storyLine += "As everyone knows, if a balloon hits a tower and pops, the tower loses health (and it hurts the tower's feelings). ";
-            storyLine += "Well, one of the towers was having none of this and decided to take action! Wearing the only balloon proof vest in the entire town, ";
-            storyLine += "Peaches the tower stood guard against the balloons. ";
-            storyLine += "Your role in this game is to play as Peaches and defeat the evil balloons thereby defending the village (and the towers within).";
+            // Altered by Christian Evans.
+            storyLine = "Once upon a time, there was this village called Taon. ";
+            storyLine += "The village was home to medieval golems that took the form of miniature buildings. ";
+            storyLine += "Life was fruitful and bliss... until the balloons showed up! ";
+            storyLine += "The golems were unequipped for such a featherweight foe, unable to protect themselves ";
+            storyLine += "from their aerial onslaught; however, a hero would rise among the ranks, capable ";
+            storyLine += "of defeating these floating enemies. This is the hero's story, as he takes on ";
+            storyLine += "waves of these balloons. Go forth, Peaches the Tower!";
             lblStoryLine.Text = "";
             tmrTextCrawl.Enabled = true;
             curStoryLineIndex = 0;
@@ -542,10 +540,13 @@ namespace TowerDefense_TheRPG
                 Controls.Remove(arrow.ControlCharacter);
             }
         }
+
+        // Altered by Christian Evans.
         private void FireArrows()
         {
             Arrow arrowLeft = new Arrow(player.X, player.Y, -1, 0);
             Arrow arrowRight = new Arrow(player.X, player.Y, +1, 0);
+            // New arrow direction types.
             Arrow arrowUp = new Arrow(player.X, player.Y, 0, +1);
             Arrow arrowDown = new Arrow(player.X, player.Y, 0, -1);
             Arrow arrowTopRight = new Arrow(player.X, player.Y, +1, +1);
@@ -559,6 +560,7 @@ namespace TowerDefense_TheRPG
             arrowLeft.ControlCharacter.BringToFront();
             arrowRight.ControlCharacter.BringToFront();
            
+            // For when the player purchases the first arrow upgrade.
             if (arrow_directions == "cardinal") {
                 arrows.Add(arrowUp);
                 arrows.Add(arrowDown);
@@ -568,6 +570,8 @@ namespace TowerDefense_TheRPG
                 arrowUp.ControlCharacter.BringToFront();
                 arrowDown.ControlCharacter.BringToFront();
             }
+
+            // For when the player purchases the second arrow upgrade.
             if (arrow_directions == "intercardinal") {
                 arrows.Add(arrowUp);
                 arrows.Add(arrowDown);
@@ -695,7 +699,8 @@ namespace TowerDefense_TheRPG
         }
 
         /// <summary>
-        /// Button uses heal_town_image and is for healing the town when the town is not at max health.
+        /// Button uses heal_town_image.png and is for healing the town when the town is not at max health.
+        /// Made by Christian Evans.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -715,6 +720,7 @@ namespace TowerDefense_TheRPG
         /// <summary>
         /// Button uses heal_player_image and is for healing the player when the player is not at max health.
         /// Is a caution as originally the only way the player could heal was from power-ups.
+        /// Made by Christian Evans.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -747,6 +753,13 @@ namespace TowerDefense_TheRPG
 
         }
 
+        /// <summary>
+        /// Button uses vertical_arrows.png and is for upgrading the player arrows to include vertical arrows.
+        /// Disappears after button is clicked, revealing the second arrow upgrade and its cost.
+        /// Made by Christian Evans.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void arrowInc_Click(object sender, EventArgs e) {
             if (player.Money >= 8) {
                 Activate();
@@ -761,6 +774,13 @@ namespace TowerDefense_TheRPG
             this.ActiveControl = null;
         }
 
+        /// <summary>
+        /// Button uses omnidir_arrows.png and is for upgrading the player arrows to include intercardinal arrows.
+        /// Disappears after button is clicked.
+        /// Made by Christian Evans.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void arrowIncOmni_Click(object sender, EventArgs e) {
             if (player.Money >= 15)
             {
