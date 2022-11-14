@@ -54,6 +54,7 @@
             this.lblCountMoney = new System.Windows.Forms.Label();
             this.townHeal = new System.Windows.Forms.Button();
             this.playerHeal = new System.Windows.Forms.Button();
+
             this.shopLabel = new System.Windows.Forms.Label();
             this.playerHealCost = new System.Windows.Forms.Label();
             this.villageHealCost = new System.Windows.Forms.Label();
@@ -61,6 +62,12 @@
             this.arrowInc = new System.Windows.Forms.Button();
             this.arrowIncOmni = new System.Windows.Forms.Button();
             this.arrowIncOmniCost = new System.Windows.Forms.Label();
+
+            this.EndlessMode = new System.Windows.Forms.Label();
+            this.tmrEndlessTextHide = new System.Windows.Forms.Timer(this.components);
+            this.lblLevel = new System.Windows.Forms.Label();
+            this.lblLevelValue = new System.Windows.Forms.Label();
+
             this.SuspendLayout();
             // 
             // lblStoryLine
@@ -377,6 +384,51 @@
             this.arrowIncOmniCost.TabIndex = 22;
             this.arrowIncOmniCost.Text = "$15:";
             this.arrowIncOmniCost.Visible = false;
+            //
+            // EndlessMode
+            // 
+            this.EndlessMode.AutoSize = true;
+            this.EndlessMode.BackColor = System.Drawing.Color.Transparent;
+            this.EndlessMode.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.EndlessMode.ForeColor = System.Drawing.Color.Blue;
+            this.EndlessMode.Location = new System.Drawing.Point(381, 72);
+            this.EndlessMode.Name = "EndlessMode";
+            this.EndlessMode.Size = new System.Drawing.Size(439, 37);
+            this.EndlessMode.TabIndex = 16;
+            this.EndlessMode.Text = "Victory! Entering Endless Mode...";
+            this.EndlessMode.Visible = false;
+            // 
+            // tmrEndlessTextHide
+            // 
+            this.tmrEndlessTextHide.Interval = 5000;
+            this.tmrEndlessTextHide.Tick += new System.EventHandler(this.EndlessTextHideTick);
+            // 
+            // lblLevel
+            // 
+            this.lblLevel.AutoSize = true;
+            this.lblLevel.BackColor = System.Drawing.Color.Transparent;
+            this.lblLevel.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblLevel.ForeColor = System.Drawing.Color.White;
+            this.lblLevel.Location = new System.Drawing.Point(970, 137);
+            this.lblLevel.Name = "lblLevel";
+            this.lblLevel.Size = new System.Drawing.Size(91, 37);
+            this.lblLevel.TabIndex = 18;
+            this.lblLevel.Text = "Level:";
+            this.lblLevel.Visible = false;
+            // 
+            // lblLevelValue
+            // 
+            this.lblLevelValue.AutoSize = true;
+            this.lblLevelValue.BackColor = System.Drawing.Color.Transparent;
+            this.lblLevelValue.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblLevelValue.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.lblLevelValue.Location = new System.Drawing.Point(1067, 137);
+            this.lblLevelValue.Name = "lblLevelValue";
+            this.lblLevelValue.Size = new System.Drawing.Size(33, 37);
+            this.lblLevelValue.TabIndex = 19;
+            this.lblLevelValue.Text = "1";
+            this.lblLevelValue.Visible = false;
+            this.lblLevelValue.Click += new System.EventHandler(this.label1_Click_3);
             // 
             // FrmMain
             // 
@@ -386,6 +438,7 @@
             this.BackgroundImage = global::TowerDefense_TheRPG.Properties.Resources.title;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1149, 634);
+
             this.Controls.Add(this.arrowIncOmniCost);
             this.Controls.Add(this.arrowIncOmni);
             this.Controls.Add(this.arrowInc);
@@ -393,6 +446,11 @@
             this.Controls.Add(this.villageHealCost);
             this.Controls.Add(this.playerHealCost);
             this.Controls.Add(this.shopLabel);
+
+            this.Controls.Add(this.lblLevelValue);
+            this.Controls.Add(this.lblLevel);
+            this.Controls.Add(this.EndlessMode);
+
             this.Controls.Add(this.playerHeal);
             this.Controls.Add(this.townHeal);
             this.Controls.Add(this.lblCountMoney);
@@ -453,5 +511,9 @@
         private Button arrowInc;
         private Button arrowIncOmni;
         private Label arrowIncOmniCost;
+        private Label EndlessMode;
+        private System.Windows.Forms.Timer tmrEndlessTextHide;
+        private Label lblLevel;
+        private Label lblLevelValue;
     }
 }

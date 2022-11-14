@@ -51,7 +51,7 @@ namespace TowerDefense_TheRPG.code {
     private Control ControlCharacter;
     private Control ControlHealthBarFull;
     private Control ControlHealthBarEmpty;
-    private const int HEALTH_BAR_WIDTH = 50;
+    private int HEALTH_BAR_WIDTH = 50;
     private int lastMoveDirX;
     private int lastMoveDirY;
     #endregion
@@ -115,6 +115,11 @@ namespace TowerDefense_TheRPG.code {
     /// value by changing HEALTH_BAR_WIDTH.
     /// </summary>
     public void UpdateHealth() {
+
+      HEALTH_BAR_WIDTH = W;
+      ControlHealthBarEmpty.Width = W;
+      ControlHealthBarFull.Width = W;
+            
       if (CurHealth > 0) {
         ControlHealthBarFull.Width = (int)(CurHealth / MaxHealth * HEALTH_BAR_WIDTH);
       }
