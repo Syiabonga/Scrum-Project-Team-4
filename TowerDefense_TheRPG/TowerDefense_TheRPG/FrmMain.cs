@@ -218,8 +218,8 @@ namespace TowerDefense_TheRPG
             {
                 BackgroundImage = Resources.tutorial;
                 btnStoryLine.Visible = false;
+                btnStart.Visible = false;
                 btnTutorial.Text = "Exit Tutorial";
-                btnStart.Location = new Point(53, 736);
 
                 tmrSpawnEnemies.Enabled = false;
                 tmrMoveEnemies.Enabled = false;
@@ -228,8 +228,8 @@ namespace TowerDefense_TheRPG
             else
             {
                 BackgroundImage = Resources.title;
-                btnStart.Location = new Point(538, 736);
                 btnStoryLine.Visible = true;
+                btnStart.Visible = true;
                 btnTutorial.Text = "Tutorial";
             }
         }
