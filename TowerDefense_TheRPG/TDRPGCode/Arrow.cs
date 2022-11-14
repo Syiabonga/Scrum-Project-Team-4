@@ -38,7 +38,7 @@ namespace TowerDefense_TheRPG.code {
       this.dirY = dirY;
       moveSpeed = 10;
       string name = "arrowhead";
-            // Arrows are currently supported for omni-directional firing. Created images for instances made by Christian Evans.
+            // Arrows are currently supported for cardianl and intercardinal firing. Created images for instances made by Christian Evans.
             if (dirY == 0) {
                 if (dirX > 0) {
                     name = "arrow_right";

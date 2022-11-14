@@ -21,7 +21,7 @@
         public int LevelXP { get; private set; }
 
         /// <summary>
-        /// Current level player has
+        /// Current level player has.
         /// </summary>
         public int Level { get; private set; }
 
@@ -68,6 +68,7 @@
 
     /// <summary>
     /// Call this function whenever a player defeats an enemy.
+    /// Made by Christian Evans.
     /// </summary>
     public void GainMoney(int moneyGained) {
       Money += moneyGained;
