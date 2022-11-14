@@ -54,10 +54,20 @@
             this.lblCountMoney = new System.Windows.Forms.Label();
             this.townHeal = new System.Windows.Forms.Button();
             this.playerHeal = new System.Windows.Forms.Button();
+
+            this.shopLabel = new System.Windows.Forms.Label();
+            this.playerHealCost = new System.Windows.Forms.Label();
+            this.villageHealCost = new System.Windows.Forms.Label();
+            this.arrowIncCost = new System.Windows.Forms.Label();
+            this.arrowInc = new System.Windows.Forms.Button();
+            this.arrowIncOmni = new System.Windows.Forms.Button();
+            this.arrowIncOmniCost = new System.Windows.Forms.Label();
+
             this.EndlessMode = new System.Windows.Forms.Label();
             this.tmrEndlessTextHide = new System.Windows.Forms.Timer(this.components);
             this.lblLevel = new System.Windows.Forms.Label();
             this.lblLevelValue = new System.Windows.Forms.Label();
+
             this.SuspendLayout();
             // 
             // lblStoryLine
@@ -263,7 +273,7 @@
             // townHeal
             // 
             this.townHeal.Image = global::TowerDefense_TheRPG.Properties.Resources.heal_town_image;
-            this.townHeal.Location = new System.Drawing.Point(23, 227);
+            this.townHeal.Location = new System.Drawing.Point(88, 242);
             this.townHeal.Name = "townHeal";
             this.townHeal.Size = new System.Drawing.Size(69, 69);
             this.townHeal.TabIndex = 14;
@@ -275,7 +285,7 @@
             // playerHeal
             // 
             this.playerHeal.Image = global::TowerDefense_TheRPG.Properties.Resources.heal_player_image;
-            this.playerHeal.Location = new System.Drawing.Point(98, 227);
+            this.playerHeal.Location = new System.Drawing.Point(88, 317);
             this.playerHeal.Name = "playerHeal";
             this.playerHeal.Size = new System.Drawing.Size(69, 69);
             this.playerHeal.TabIndex = 15;
@@ -284,6 +294,97 @@
             this.playerHeal.Visible = false;
             this.playerHeal.Click += new System.EventHandler(this.button1_Click_1);
             // 
+            // shopLabel
+            // 
+            this.shopLabel.AutoSize = true;
+            this.shopLabel.BackColor = System.Drawing.Color.Transparent;
+            this.shopLabel.Font = new System.Drawing.Font("Segoe UI", 24.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.shopLabel.Location = new System.Drawing.Point(24, 193);
+            this.shopLabel.Name = "shopLabel";
+            this.shopLabel.Size = new System.Drawing.Size(110, 46);
+            this.shopLabel.TabIndex = 16;
+            this.shopLabel.Text = "Shop:";
+            this.shopLabel.Visible = false;
+            // 
+            // playerHealCost
+            // 
+            this.playerHealCost.AutoSize = true;
+            this.playerHealCost.BackColor = System.Drawing.Color.Transparent;
+            this.playerHealCost.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.playerHealCost.ForeColor = System.Drawing.Color.DarkGreen;
+            this.playerHealCost.Location = new System.Drawing.Point(8, 327);
+            this.playerHealCost.Name = "playerHealCost";
+            this.playerHealCost.Size = new System.Drawing.Size(56, 37);
+            this.playerHealCost.TabIndex = 17;
+            this.playerHealCost.Text = "$2:";
+            this.playerHealCost.Visible = false;
+            this.playerHealCost.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // villageHealCost
+            // 
+            this.villageHealCost.AutoSize = true;
+            this.villageHealCost.BackColor = System.Drawing.Color.Transparent;
+            this.villageHealCost.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.villageHealCost.ForeColor = System.Drawing.Color.DarkGreen;
+            this.villageHealCost.Location = new System.Drawing.Point(8, 252);
+            this.villageHealCost.Name = "villageHealCost";
+            this.villageHealCost.Size = new System.Drawing.Size(56, 37);
+            this.villageHealCost.TabIndex = 18;
+            this.villageHealCost.Text = "$3:";
+            this.villageHealCost.Visible = false;
+            this.villageHealCost.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // arrowIncCost
+            // 
+            this.arrowIncCost.AutoSize = true;
+            this.arrowIncCost.BackColor = System.Drawing.Color.Transparent;
+            this.arrowIncCost.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.arrowIncCost.ForeColor = System.Drawing.Color.DarkGreen;
+            this.arrowIncCost.Location = new System.Drawing.Point(8, 398);
+            this.arrowIncCost.Name = "arrowIncCost";
+            this.arrowIncCost.Size = new System.Drawing.Size(56, 37);
+            this.arrowIncCost.TabIndex = 19;
+            this.arrowIncCost.Text = "$8:";
+            this.arrowIncCost.Visible = false;
+            this.arrowIncCost.Click += new System.EventHandler(this.arrowIncCost_Click);
+            // 
+            // arrowInc
+            // 
+            this.arrowInc.Image = global::TowerDefense_TheRPG.Properties.Resources.vertical_arrows;
+            this.arrowInc.Location = new System.Drawing.Point(88, 392);
+            this.arrowInc.Name = "arrowInc";
+            this.arrowInc.Size = new System.Drawing.Size(69, 69);
+            this.arrowInc.TabIndex = 20;
+            this.arrowInc.TabStop = false;
+            this.arrowInc.UseVisualStyleBackColor = true;
+            this.arrowInc.Visible = false;
+            this.arrowInc.Click += new System.EventHandler(this.arrowInc_Click);
+            // 
+            // arrowIncOmni
+            // 
+            this.arrowIncOmni.Image = global::TowerDefense_TheRPG.Properties.Resources.omnidir_arrows;
+            this.arrowIncOmni.Location = new System.Drawing.Point(88, 392);
+            this.arrowIncOmni.Name = "arrowIncOmni";
+            this.arrowIncOmni.Size = new System.Drawing.Size(69, 69);
+            this.arrowIncOmni.TabIndex = 21;
+            this.arrowIncOmni.TabStop = false;
+            this.arrowIncOmni.UseVisualStyleBackColor = true;
+            this.arrowIncOmni.Visible = false;
+            this.arrowIncOmni.Click += new System.EventHandler(this.arrowIncOmni_Click);
+            // 
+            // arrowIncOmniCost
+            // 
+            this.arrowIncOmniCost.AutoSize = true;
+            this.arrowIncOmniCost.BackColor = System.Drawing.Color.Transparent;
+            this.arrowIncOmniCost.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.arrowIncOmniCost.ForeColor = System.Drawing.Color.DarkGreen;
+            this.arrowIncOmniCost.Location = new System.Drawing.Point(12, 402);
+            this.arrowIncOmniCost.Name = "arrowIncOmniCost";
+            this.arrowIncOmniCost.Size = new System.Drawing.Size(72, 37);
+            this.arrowIncOmniCost.TabIndex = 22;
+            this.arrowIncOmniCost.Text = "$15:";
+            this.arrowIncOmniCost.Visible = false;
+            //
             // EndlessMode
             // 
             this.EndlessMode.AutoSize = true;
@@ -337,9 +438,19 @@
             this.BackgroundImage = global::TowerDefense_TheRPG.Properties.Resources.title;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1149, 634);
+
+            this.Controls.Add(this.arrowIncOmniCost);
+            this.Controls.Add(this.arrowIncOmni);
+            this.Controls.Add(this.arrowInc);
+            this.Controls.Add(this.arrowIncCost);
+            this.Controls.Add(this.villageHealCost);
+            this.Controls.Add(this.playerHealCost);
+            this.Controls.Add(this.shopLabel);
+
             this.Controls.Add(this.lblLevelValue);
             this.Controls.Add(this.lblLevel);
             this.Controls.Add(this.EndlessMode);
+
             this.Controls.Add(this.playerHeal);
             this.Controls.Add(this.townHeal);
             this.Controls.Add(this.lblCountMoney);
@@ -357,6 +468,7 @@
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tower Defense The RPG";
+            this.Load += new System.EventHandler(this.FrmMain_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
@@ -392,6 +504,13 @@
         private Label lblCountMoney;
         private Button townHeal;
         private Button playerHeal;
+        private Label shopLabel;
+        private Label playerHealCost;
+        private Label villageHealCost;
+        private Label arrowIncCost;
+        private Button arrowInc;
+        private Button arrowIncOmni;
+        private Label arrowIncOmniCost;
         private Label EndlessMode;
         private System.Windows.Forms.Timer tmrEndlessTextHide;
         private Label lblLevel;
