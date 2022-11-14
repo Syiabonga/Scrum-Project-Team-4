@@ -1,4 +1,6 @@
-﻿namespace TowerDefense_TheRPG.code {
+﻿using System.Diagnostics.Eventing.Reader;
+
+namespace TowerDefense_TheRPG.code {
   /// <summary>
   /// Basic ranged attack for our player
   /// </summary>
@@ -34,11 +36,41 @@
       Y = y;
       this.dirX = dirX;
       this.dirY = dirY;
-      moveSpeed = 12;
-      string name = "arrow_right";
-      if (dirX < 0) {
-        name = "arrow_left";
-      }
+      moveSpeed = 10;
+      string name = "arrowhead";
+            // Arrows are currently supported for omni-directional firing. Created images for instances made by Christian Evans.
+            if (dirY == 0) {
+                if (dirX > 0) {
+                    name = "arrow_right";
+                }
+                else {
+                    name = "arrow_left";
+                }
+            }
+            else if (dirX == 0) {
+                if (dirY < 0) {
+                    name = "arrow_up";
+                }
+                else {
+                    name = "arrow_down";
+                }
+            }
+            else if (dirY > 0) {
+                if (dirX < 0) {
+                    name = "arrow_botleft";
+                }
+                else {
+                    name = "arrow_botright";
+                }
+            }
+            else if (dirY < 0) {
+                if (dirX > 0) {
+                    name = "arrow_topright";
+                }
+                else {
+                    name = "arrow_topleft";
+                }
+            }
       ControlCharacter = new PictureBox() {
         BackgroundImage = ControlManager.ResMan.GetObject(name) as Bitmap,
         BackgroundImageLayout = ImageLayout.Stretch,

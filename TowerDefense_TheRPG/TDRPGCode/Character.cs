@@ -1,4 +1,6 @@
-﻿namespace TowerDefense_TheRPG.code {
+﻿using System.Runtime.InteropServices;
+
+namespace TowerDefense_TheRPG.code {
   /// <summary>
   /// Base character class. Inherits from <see cref="Stats">Stats</see>.
   /// <see cref="Enemy"/>, <see cref="Player"/> and <see cref="Village"/> inherit from this class.
@@ -206,24 +208,34 @@
       IsVisible = false;
       ControlContainer.Visible = IsVisible;
     }
-    #endregion
+        #endregion
 
-    #region Movement
-    /// <summary>
-    /// Visually moves this character object. This sets the X and Y properties to the new values
-    /// after the move and updates the <see cref="ControlContainer"/> Top and Left properties so the character
-    /// both visually moves and has its X and Y properties updated. This function automatically accounts for
-    /// movement speed (using <see cref="Stats.MoveSpeed"/>)
-    /// </summary>
-    /// <param name="dirX">X direction to move. This should be either +1, 0, or -1</param>
-    /// <param name="dirY">Y direction to move. This should be either +1, 0, or -1</param>
-    /// <param name="rememberLastMove">This is used internally for knockback. Ignore this parameter if calling this function from outside of this class</param>
-    public virtual void Move(int dirX, int dirY, bool rememberLastMove = true) {
-      Y += dirY * MoveSpeed;
-      X += dirX * MoveSpeed;
-      ControlContainer.Top = Y;
-      ControlContainer.Left = X;
-      if (rememberLastMove) {
+        #region Movement
+        /// <summary>
+        /// Visually moves this character object. This sets the X and Y properties to the new values
+        /// after the move and updates the <see cref="ControlContainer"/> Top and Left properties so the character
+        /// both visually moves and has its X and Y properties updated. This function automatically accounts for
+        /// movement speed (using <see cref="Stats.MoveSpeed"/>)
+        /// </summary>
+        /// <param name="dirX">X direction to move. This should be either +1, 0, or -1</param>
+        /// <param name="dirY">Y direction to move. This should be either +1, 0, or -1</param>
+        /// <param name="rememberLastMove">This is used internally for knockback. Ignore this parameter if calling this function from outside of this class</param>
+        /// <param name ="Width">Width of the play area, used for bounds detection </param>
+        /// <param name="Height">Height of the play area, used for bounds detection </param>
+        public virtual void Move(int dirX, int dirY, bool rememberLastMove = true, int Width = 500, int Height = 500) {
+      
+      
+            if ((ControlContainer.Top >= 10 && dirY < 0) || (ControlContainer.Bottom <= Height - 10 && dirY > 0))
+            {
+                Y += dirY * MoveSpeed;
+            }
+            if ((ControlContainer.Left >= 15 && dirX < 0) || (ControlContainer.Right <= Width - 15 && dirX > 0))
+            {
+                X += dirX * MoveSpeed;
+            }
+            ControlContainer.Top = Y;
+            ControlContainer.Left = X;
+            if (rememberLastMove) {
         lastMoveDirX = dirX;
         lastMoveDirY = dirY;
       }
