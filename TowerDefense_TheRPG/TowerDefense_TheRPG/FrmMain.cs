@@ -695,6 +695,11 @@ namespace TowerDefense_TheRPG
 
         }
 
+        /// <summary>
+        /// Button uses vertical_arrows.png and is for improving player arrows by adding vertical arrows.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void arrowInc_Click(object sender, EventArgs e) {
             if (player.Money >= 8) {
                 Activate();
@@ -709,6 +714,11 @@ namespace TowerDefense_TheRPG
             this.ActiveControl = null;
         }
 
+        /// <summary>
+        /// Button uses omnidir_arrows.png and is for improving player arrows by adding intercardinal arrows.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void arrowIncOmni_Click(object sender, EventArgs e) {
             if (player.Money >= 15) {
                 Activate();
